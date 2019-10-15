@@ -23,10 +23,10 @@ ALTER SEQUENCE projects_id_seq
 
 CREATE TABLE users
 (
-    id         bigint DEFAULT nextval('users_id_seq'::regclass),
-    email      character varying(255),
-    password   character varying(255),
-    role       character varying(255),
+    id       bigint DEFAULT nextval('users_id_seq'::regclass),
+    email    character varying(255),
+    password character varying(255),
+    role     character varying(255),
     CONSTRAINT users_pkey PRIMARY KEY (id)
 )
     WITH (

@@ -20,12 +20,12 @@ public class UserController {
     }
 
     @GetMapping
-    private List<User> getAll(){
+    private List<User> getAll() {
         return userService.getAll();
     }
 
     @GetMapping(value = "/{id}")
-    private User get(@PathVariable(name = "id") Long id){
+    private User get(@PathVariable(name = "id") Long id) {
         return userService.get(id);
     }
 }

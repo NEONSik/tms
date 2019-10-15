@@ -14,11 +14,12 @@ public class ProjectService {
     public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
-    public Project get(Long id){
+
+    public Project get(Long id) {
         return projectRepository.findById(id).get();
     }
 
-    public List<Project> getAll(){
+    public List<Project> getAll() {
         return projectRepository.findAll();
     }
 }
