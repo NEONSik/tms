@@ -1,13 +1,13 @@
-backend/target
-fapi/target
+#common ignores
+*/target
 .idea
-backend/.idea
-frontend/node_modules
 .mvn
-mvnw
-mvnw.cmd
-HELP.md
-backend/backend.iml
-fapi/fapi.iml
+*.iml
+
+#backend ignores
+
+#fapi ignores
+
+#frontend ignores
+frontend/node_modules
 frontend/package-lock.json
-tms.iml
