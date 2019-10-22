@@ -22,4 +22,17 @@ public class ProjectService {
     public List<Project> getAll() {
         return projectRepository.findAll();
     }
+
+    public Project create(Project project) {
+        return projectRepository.save(project);
+    }
+
+    public Project update(Project project, Long id) {
+        project.setId(id);
+        return projectRepository.save(project);
+    }
+
+    public void delete(Long id) {
+        projectRepository.deleteById(id);
+    }
 }
