@@ -1,7 +1,10 @@
 package com.netcracker.lazarev.tms.controller;
 
+import com.netcracker.lazarev.tms.dto.Converter;
+import com.netcracker.lazarev.tms.dto.ProjectDto;
 import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.service.ProjectService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,33 +16,38 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
+    @Autowired
     public ProjectController(ProjectService ProjectService) {
         this.projectService = ProjectService;
     }
 
     @GetMapping
-    private List<Project> getAll() {
-        return projectService.getAll();
+    private List<ProjectDto> getAll() {
+        List<Project> projects = projectService.getAll();
+        return projects.stream().map(Converter::toDto).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    private Project get(@PathVariable(name = "id") Long id) {
-        return projectService.get(id);
+    private ProjectDto get(@PathVariable(name = "id") Long id) {
+        Project project = projectService.get(id);
+        return Converter.toDto(project);
     }
 
     @PostMapping
-    private Project create(@RequestBody Project project) {
-        return projectService.create(project);
+    private ProjectDto create(@RequestBody ProjectDto projectDto) {
+        Project project = projectService.create(Converter.fromDto(projectDto));
+        return Converter.toDto(project);
     }
 
     @PutMapping("/{id}")
-    private Project create(@RequestBody Project project,
-                        @PathVariable(name = "id") Long id) {
-        return projectService.update(project, id);
+    private ProjectDto update(@RequestBody ProjectDto projectDto,
+                              @PathVariable(name = "id") Long id) {
+        Project project = projectService.update(Converter.fromDto(projectDto), id);
+        return Converter.toDto(project);
     }
 
     @DeleteMapping("/{id}")
-    private void create(@PathVariable(name = "id") Long id) {
+    private void delete(@PathVariable(name = "id") Long id) {
         projectService.delete(id);
     }
 }

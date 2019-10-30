@@ -1,10 +1,13 @@
 package com.netcracker.lazarev.tms.controller;
 
+import com.netcracker.lazarev.tms.dto.Converter;
+import com.netcracker.lazarev.tms.dto.UserDto;
 import com.netcracker.lazarev.tms.entity.User;
 import com.netcracker.lazarev.tms.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -17,28 +20,32 @@ public class UserController {
     }
 
     @GetMapping
-    private List<User> getAll() {
-        return userService.getAll();
+    private List<UserDto> getAll() {
+        List<User> users = userService.getAll();
+        return users.stream().map(Converter::toDto).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    private User get(@PathVariable(name = "id") Long id) {
-        return userService.get(id);
+    private UserDto get(@PathVariable(name = "id") Long id) {
+        User user = userService.get(id);
+        return Converter.toDto(user);
     }
 
     @PostMapping
-    private User create(@RequestBody User user) {
-        return userService.create(user);
+    private UserDto create(@RequestBody UserDto userDto) {
+        User user = userService.create(Converter.fromDto(userDto));
+        return Converter.toDto(user);
     }
 
     @PutMapping("/{id}")
-    private User create(@RequestBody User user,
-                        @PathVariable(name = "id") Long id) {
-        return userService.update(user, id);
+    private UserDto update(@RequestBody UserDto userDto,
+                           @PathVariable(name = "id") Long id) {
+        User user = userService.update(Converter.fromDto(userDto), id);
+        return Converter.toDto(user);
     }
 
     @DeleteMapping("/{id}")
-    private void create(@PathVariable(name = "id") Long id) {
+    private void delete(@PathVariable(name = "id") Long id) {
         userService.delete(id);
     }
 }
