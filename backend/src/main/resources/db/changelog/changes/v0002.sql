@@ -1,27 +1,27 @@
 INSERT INTO users (email, password, role)
-VALUES ('dmitry@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'ADMIN');
+VALUES ('Ilya@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'ADMIN');
 INSERT INTO users (email, password, role)
 VALUES ('vasya@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'PROJECT_MANAGER');
 INSERT INTO users (email, password, role)
-VALUES ('kirill@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
+VALUES ('kirisha@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
 INSERT INTO users (email, password, role)
-VALUES ('sasha@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
+VALUES ('katya@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
 INSERT INTO users (email, password, role)
 VALUES ('masha@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'TESTER');
 INSERT INTO users (email, password, role)
 VALUES ('danila@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'TESTER');
 INSERT INTO users (email, password, role)
-VALUES ('oleg@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
+VALUES ('kshuha@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
 INSERT INTO users (email, password, role)
-VALUES ('sasWDADFEFha@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
+VALUES ('sasha@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
 INSERT INTO users (email, password, role)
-VALUES ('sasgrefersfdfha@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
+VALUES ('dendi@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'DEVELOPER');
 INSERT INTO users (email, password, role)
-VALUES ('danila1max@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'TESTER');
+VALUES ('imax@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'TESTER');
 INSERT INTO users (email, password, role)
-VALUES ('sasha1in@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'TESTER');
+VALUES ('sashakain@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'TESTER');
 INSERT INTO users (email, password, role)
-VALUES ('sashdfsga1in@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'TESTER');
+VALUES ('ga1in@mail.ru', '$2a$10$lFg7NGomSeI/h9A26vtWKutC8mGJln3.kCxuEyyaz4U24Lmb1mlXK', 'TESTER');
 
 INSERT INTO projects (project_code, summary, project_manager_id)
 VALUES ('CRM', 'CRM system for BigBang.corp', 2);
