@@ -1,0 +1,147 @@
+/*!*for all pages*!*/
+/*html {*/
+/*  font-size: 10px;*/
+/*  !*background-color: black;*!*/
+/*}*/
+/*!*body {*!*/
+/*!*    margin-top: 2rem;*!*/
+/*!*    padding: 3rem;*!*/
+/*!*    text-align: center;*!*/
+/*!*}*!*/
+/*div {*/
+/*  font-size: 2rem;*/
+/*  padding: 1rem;*/
+/*  !*margin-top: 2rem;*!*/
+/*  !*border: solid 1px black;*!*/
+/*}*/
+/*!*table page*!*/
+/*.new_buttons {*/
+/*  margin: 1rem 0 1rem 2rem;*/
+/*}*/
+/*.data_table,.sign_in, .wrapper {*/
+/*  padding: 2rem;*/
+/*  margin: 2rem;*/
+/*  border: solid 1px black;*/
+/*  box-shadow: 0.2rem 0.2rem 1rem black;*/
+/*}*/
+/*table :first-child {*/
+/*  font-weight: bold;*/
+/*  padding: 0.2rem;*/
+/*  border: 1px solid black;*/
+/*}*/
+/*table :last-child {*/
+/*  border: 1px solid black;*/
+/*}*/
+/*td {*/
+/*  width: 8rem;*/
+/*  height: 1rem;*/
+/*}*/
+/*.popup {*/
+/*  bottom: -1500%;*/
+/*  right: 0;*/
+/*  left: 50%;*/
+/*  font-size: 14px;*/
+/*  z-index: 999;*/
+/*  width: 85%;*/
+/*  min-width: 200px;*/
+/*  max-width: 400px;*/
+/*  position: fixed;*/
+/*  padding: 55px;*/
+/*  border: 1px solid #383838;*/
+/*  background: #fefefe;*/
+/*  -webkit-border-radius: 4px;*/
+/*  -moz-border-radius: 4px;*/
+/*  -ms-border-radius: 4px;*/
+/*  border-radius: 4px;*/
+/*  font: 14px/18px 'Tahoma', Arial, sans-serif;*/
+/*  -webkit-transform: translate(-50%, 1500%);*/
+/*  -ms-transform: translate(-50%, 1500%);*/
+/*  -o-transform: translate(-50%, 1500%);*/
+/*  transform: translate(-50%, 1500%);*/
+/*  transition-duration: 1s;*/
+/*  transition-delay: 0s, 1s;*/
+/*}*/
+/*.popup:target {*/
+/*  -webkit-transform: translate(-50%, 0);*/
+/*  -ms-transform: translate(-50%, 0);*/
+/*  -o-transform: translate(-50%, 0);*/
+/*  transform: translate(-50%, 0);*/
+/*  bottom: 0;*/
+/*}*/
+/*.close {*/
+/*  top: 10px;*/
+/*  right: 10px;*/
+/*  width: 25px;*/
+/*  height: 25px;*/
+/*  position: absolute;*/
+/*  padding: 0;*/
+/*  -webkit-border-radius: 50%;*/
+/*  -moz-border-radius: 50%;*/
+/*  -ms-border-radius: 50%;*/
+/*  border-radius: 50%;*/
+/*  background-color: rgba(233, 233, 233, 0.8);*/
+/*  text-align: center;*/
+/*  text-decoration: none;*/
+/*  font: 16px/21px 'Tahoma', Arial, sans-serif;*/
+/*  font-weight: 700;*/
+/*  border: 1px solid #ada9a9;*/
+/*}*/
+/*.close::before {*/
+/*  color: rgba(245, 5, 5, 0.9);*/
+/*  content: "X";*/
+/*  text-shadow: 0 -1px rgba(0, 0, 0, .9);*/
+/*  font-size: 11px;*/
+/*}*/
+/*!*user page*!*/
+/*.user_information {*/
+/*  width: 25%;*/
+/*  !*background-color: black;*!*/
+/*  !*background-image: url("Снимок.PNG");*!*/
+/*  float: left;*/
+/*  margin: 2rem auto;*/
+/*}*/
+/*.dropdown-item a {*/
+/*  color: white;*/
+/*}*/
+/*.user_information > * {*/
+/*  padding: 0.1rem;*/
+/*  color: darkslateblue;*/
+/*}*/
+/*.user_information p, img, .wrapper p {*/
+/*  !*margin-bottom: 1rem;*!*/
+/*  text-align: left;*/
+/*}*/
+/*.user_information h2, .wrapper h3 {*/
+/*  float: contour;*/
+/*  margin-right: 1rem;*/
+/*}*/
+/*.user_information a {*/
+/*  color: darkviolet;*/
+/*}*/
+/*.avatar {*/
+/*  width: 8rem;*/
+/*}*/
+/*!* project info page *!*/
+/*.wrapper {*/
+/*  margin: 2rem auto;*/
+/*  width: 90%;*/
+/*  height: 35rem;*/
+/*}*/
+/*.wrapper h2 {*/
+/*  font-weight: bold;*/
+/*  font-size: 2rem;*/
+/*  margin-bottom: 1rem;*/
+/*}*/
+/*.project_main_info {*/
+/*  width: 60%;*/
+/*  text-align: left;*/
+/*  border-right: 1px solid black;*/
+/*}*/
+/*.sidebar {*/
+/*  width: 35%;*/
+/*  margin-top: -10%;*/
+/*  float:right;*/
+/*  text-align: left;*/
+/*}*/
+/*!* You can add global styles to this file, and also import other style files *!*/
+
