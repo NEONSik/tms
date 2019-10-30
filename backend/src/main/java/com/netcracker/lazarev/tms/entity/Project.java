@@ -1,9 +1,10 @@
 package com.netcracker.lazarev.tms.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
-
+@AllArgsConstructor
 @Data
 @Entity
 @Table(name = "projects")
