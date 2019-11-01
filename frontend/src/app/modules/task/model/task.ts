@@ -1,6 +1,6 @@
 import {User} from '../../user/model/user';
 
-export class Task {
+export class Taskpage {
   id: number;
   createdate: number;
   description: string;

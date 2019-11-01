@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskPageComponent } from './model/task-page/task-page.component';
+import { TaskPageComponent } from './companents/task-page/task-page.component';
+import {UserService} from '../../services/user.service';
+import {TaskService} from '../../services/task.service';
 
 
 
@@ -8,6 +10,7 @@ import { TaskPageComponent } from './model/task-page/task-page.component';
   declarations: [TaskPageComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  providers: [TaskService]
 })
 export class TaskModule { }
