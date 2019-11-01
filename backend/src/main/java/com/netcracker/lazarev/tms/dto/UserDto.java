@@ -1,6 +1,7 @@
 package com.netcracker.lazarev.tms.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;

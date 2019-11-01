@@ -9,6 +9,6 @@ import {UserService} from '../../services/user.service';
   imports: [
     CommonModule
   ],
-  providers: [UserService]
+    providers: [UserService]
 })
 export class UserModule { }
