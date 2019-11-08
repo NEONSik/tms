@@ -7,17 +7,17 @@ import {User} from '../../model/user';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css']
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent {
 
-  user: User;
+  // user: User;
 
   constructor(private userService: UserService) {
   }
 
-  ngOnInit() {
-    this.userService.getUserAll().subscribe((user: User[]) => {
-      this.user = user[0];
-    });
-  }
-
+// ngOnInit() {
+//   // this.userService.getUserAll().subscribe((user: User[]) => {
+//   //   this.user = user[0];
+//   });
+// }
 }
+
