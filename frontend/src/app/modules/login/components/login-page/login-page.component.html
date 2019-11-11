@@ -1,1 +1,23 @@
-<p>login-page works!</p>
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <div class="email">
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="email">
+      <div class="password">
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="button">
+      <button mat-raised-button color="primary" routerLink="/home">Log in </button>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

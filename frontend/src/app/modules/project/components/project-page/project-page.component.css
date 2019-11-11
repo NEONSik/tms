@@ -4,5 +4,23 @@ width: 100%;
 /*.leftside{*/
 /*margin-left:80rem;*/
 /*}*/
+.leftside{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+}
+.leftside span {
+  min-width:150px;
+}
 
-
+.wrapper{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.mat-table{
+  box-shadow: none !important;
+}

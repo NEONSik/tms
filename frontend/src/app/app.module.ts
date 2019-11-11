@@ -4,17 +4,17 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {UserPageComponent} from './modules/user/components/user-page/user-page.component';
 import {Routes, RouterModule} from '@angular/router';
-import {StartPageComponent} from './modules/start/components/start-page/start-page.component';
+import {HomePageComponent} from './modules/homepage/components/homePage/home-page.component';
 import {ProjectTableComponent} from './modules/project/components/project-table/project-table.component';
 import {ErrorComponent} from './modules/error/components/error/error.component';
 import {ProjectPageComponent} from './modules/project/components/project-page/project-page.component';
 import {LoginPageComponent} from './modules/login/components/login-page/login-page.component';
-import {HeaderComponent} from './modules/header/components/header/header.component';
+import {NavBarComponent} from './modules/header/components/header/nav-bar.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 // import {BottomSheetOverviewExampleSheet, TaskPageComponent} from './modules/task/components/task-page/task-page.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatExpansionModule,
+  MatButtonModule, MatExpansionModule, MatFormFieldControl,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -23,35 +23,36 @@ import {
   MatSliderModule, MatTableModule, MatTabsModule
 } from '@angular/material';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {HeaderForAdminComponent} from './modules/header/components/header-for-admin/header-for-admin.component';
 import {UserModule} from './modules/user/user.module';
 import {UserTableComponent} from './modules/user/components/user-table/user-table.component';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {TaskPageComponent} from './modules/task/components/task-page/task-page.component';
+import {NavBarModule} from './modules/header/nav-bar.module';
+import {TaskModule} from './modules/task/task.module';
+import {ProjectModule} from './modules/project/project.module';
+
+
 
 
 const appRoutes: Routes = [
-  {path: '', component: StartPageComponent},
+  {path: '', component: LoginPageComponent},
   {path: 'user', component: UserPageComponent},
   {path: 'projects', component: ProjectTableComponent},
   {path: 'taskpage', component: TaskPageComponent},
-  {path: 'headeradmin', component: HeaderForAdminComponent},
-  {path: 'projectpage', component: ProjectPageComponent}
+  {path: 'projectpage', component: ProjectPageComponent},
+  {path: 'home', component: HomePageComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     UserPageComponent,
-    StartPageComponent,
     ProjectTableComponent,
     ErrorComponent,
     ProjectPageComponent,
     LoginPageComponent,
-    HeaderComponent,
-    TaskPageComponent,
-    HeaderForAdminComponent,
-    UserTableComponent
+    UserTableComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -71,15 +72,14 @@ const appRoutes: Routes = [
     MatTabsModule,
     MatTableModule,
     UserModule,
+    NavBarModule,
     MatExpansionModule,
+    TaskModule,
+    ProjectModule
   ],
-  providers: [],
   exports: [
-    HeaderComponent,
     ProjectTableComponent,
-    UserTableComponent,
-    TaskPageComponent
-
+    UserTableComponent
   ],
   bootstrap: [AppComponent]
 })

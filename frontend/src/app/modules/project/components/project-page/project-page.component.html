@@ -1,14 +1,11 @@
-<app-header></app-header>
+<app-navbar></app-navbar>
 <div class="wrapper">
   <div class="leftside">
-    <h6>Project Manager:</h6>
-    <p>1</p>
-    <h6>Project Code:</h6>
-    <p>2</p>
-    <h6>#id:</h6>
-    <p>3</p>
+    <span>Project Manager: 1</span>
+    <span>Project Code: 2</span>
+    <span>#id: 3</span>
   </div>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table class="custom_table" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->

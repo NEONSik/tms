@@ -1,8 +1,9 @@
 import {User} from '../../user/model/user';
 
-export class ProjectTable {
+export class Project {
   id: number;
   projectCode: string;
   summary: string;
-  projectManager: User;
+  // need User
+  projectManager: number;
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderForTesterComponent } from './header-for-tester.component';
+import { HomePageComponent } from './home-page.component';
 
-describe('HeaderForTesterComponent', () => {
-  let component: HeaderForTesterComponent;
-  let fixture: ComponentFixture<HeaderForTesterComponent>;
+describe('StartPageComponent', () => {
+  let component: HomePageComponent;
+  let fixture: ComponentFixture<HomePageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderForTesterComponent ]
+      declarations: [ HomePageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderForTesterComponent);
+    fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

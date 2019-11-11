@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectTable} from '../../model/project';
+import {Project} from '../../model/project';
 import {User} from '../../../user/model/user';
 import {TaskService} from '../../../../services/task.service';
 import {ProjectService} from '../../../../services/project.service';
@@ -28,14 +28,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./project-table.component.css']
 })
 export class ProjectTableComponent implements OnInit {
-  projectTable: ProjectTable;
+  projectTable: Project;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
   constructor(private projectservice: ProjectService) {
   }
 
   ngOnInit() {
-    this.projectservice.getProjects().subscribe((projectTable: ProjectTable[]) => {
+    this.projectservice.getProjects().subscribe((projectTable: Project[]) => {
       this.projectTable = projectTable[0];
     });
   }
