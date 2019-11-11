@@ -1,6 +1,7 @@
 import {User} from '../../user/model/user';
+import {Project} from '../../project/model/project';
 
-export class Taskpage {
+export class Task {
   id: number;
   createdate: number;
   description: string;
@@ -10,10 +11,9 @@ export class Taskpage {
   status: string;
   ticketcode: string;
   updatedate: number;
-  assigneid: User;
-  reporterid: User;
+  assignee: User;
+  project: Project;
+  reporter: User;
 
-  costructor() {
-
-  }
+  costructor() {}
 }
