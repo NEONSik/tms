@@ -10,22 +10,22 @@ export class TaskService {
   }
 
   createTask(task) {
-    return this.http.post(`api/tasks`, task);
+    return this.http.post(`api/v1/tasks`, task);
   }
 
   getTask(id: number) {
-    return this.http.get(`api/tasks/${id}`);
+    return this.http.get(`api/v1/tasks/${id}`);
   }
 
   deleteTask(id: number) {
-    return this.http.delete(`api/tasks/${id}`);
+    return this.http.delete(`api/v1/tasks/${id}`);
   }
 
   getTaskPage(page: number, size: number, sort: string) {
-    return this.http.get(`api/tasks/pm?page=${page}&size=${size}&sort=${sort}`);
+    return this.http.get(`api/v1/tasks/pm?page=${page}&size=${size}&sort=${sort}`);
   }
 
   getTasks() {
-    return this.http.get(`api/tasks`);
+    return this.http.get(`api/v1/tasks`);
   }
 }

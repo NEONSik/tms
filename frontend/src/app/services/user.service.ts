@@ -11,22 +11,22 @@ export class UserService {
   }
 
   createUser(user: User) {
-    return this.http.post(`api/users`, user);
+    return this.http.post(`api/v1/users`, user);
   }
 
   getUser(id: number) {
-    return this.http.get(`api/users/${id}`);
+    return this.http.get(`api/v1/users/${id}`);
   }
 
   getUserAll() {
-    return this.http.get(`api/v1/users`);
+    return this.http.get(`api/users`);
   }
 
   updateUser(id: number, user: User) {
-    return this.http.put(`api/users/${id}`, user);
+    return this.http.put(`api/v1/users/${id}`, user);
   }
 
   deleteUser(id: number) {
-    return this.http.delete(`api/users/${id}`);
+    return this.http.delete(`api/v1/users/${id}`);
   }
 }
