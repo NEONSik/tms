@@ -1,6 +1,7 @@
 package com.netcracker.lazarev.tms.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @Entity
+@Builder
 @Table(name = "tasks")
 public class Task {
     @Id
@@ -40,4 +42,17 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "reporter_id")
     private User reporter;
+
+    @PrePersist
+    public void onCreate() {
+        long time = System.currentTimeMillis();
+        createDate = time;
+        updateDate = time;
+        ticketCode = String.valueOf(time);
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        updateDate = System.currentTimeMillis();
+    }
 }

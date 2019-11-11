@@ -7,10 +7,12 @@ import com.netcracker.lazarev.tms.entity.User;
 public class Converter {
 
     public static User fromDto(UserDto userDto) {
-        return new User(userDto.getId(),
-                userDto.getPassword(),
-                userDto.getRole(),
-                userDto.getEmail());
+        return User.builder()
+                .id(userDto.getId())
+                .email(userDto.getEmail())
+                .password(userDto.getPassword())
+                .role(userDto.getRole())
+                .build();
     }
 
     public static UserDto toDto(User user) {
@@ -54,13 +56,13 @@ public class Converter {
         return new Project(projectDto.getId(),
                 projectDto.getProjectCode(),
                 projectDto.getSummary(),
-                fromDto(projectDto.getProjectManager()));
+                projectDto.getProjectManager()!=null ? fromDto(projectDto.getProjectManager()) : null);
     }
 
     public static ProjectDto toDto(Project project) {
         return new ProjectDto(project.getId(),
                 project.getProjectCode(),
                 project.getSummary(),
-                toDto(project.getProjectManager()));
+                project.getProjectManager()!= null ? toDto(project.getProjectManager()): null);
     }
 }

@@ -2,6 +2,7 @@ package com.netcracker.lazarev.tms.dto;
 
 import com.netcracker.lazarev.tms.entity.Project;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.AssociationOverrides;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 
 @AllArgsConstructor
 @Data
+@Builder
 public class TaskDto {
     private Long id;
     private Long createDate;

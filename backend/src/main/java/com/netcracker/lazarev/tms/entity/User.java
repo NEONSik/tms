@@ -1,6 +1,7 @@
 package com.netcracker.lazarev.tms.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @Entity
+@Builder
 @Table(name = "users")
 public class User {
     @Id

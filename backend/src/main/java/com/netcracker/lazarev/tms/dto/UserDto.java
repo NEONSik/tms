@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 
 @AllArgsConstructor
 @Data
+@Builder
 public class UserDto {
     private Long id;
     private String password;
