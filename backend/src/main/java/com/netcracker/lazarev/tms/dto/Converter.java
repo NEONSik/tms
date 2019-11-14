@@ -4,65 +4,79 @@ import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.entity.Task;
 import com.netcracker.lazarev.tms.entity.User;
 
+
 public class Converter {
 
     public static User fromDto(UserDto userDto) {
-        return User.builder()
+        User user = User.builder()
                 .id(userDto.getId())
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
                 .role(userDto.getRole())
                 .build();
+        return user;
     }
 
     public static UserDto toDto(User user) {
-        return new UserDto(user.getId(),
-                user.getPassword(),
-                user.getRole(),
-                user.getEmail());
+        return UserDto.builder()
+                .id(user.getId())
+                .password(user.getPassword())
+                .role(user.getRole())
+                .email(user.getEmail())
+                .build();
     }
 
     public static Task fromDto(TaskDto taskDto) {
-        return new Task(taskDto.getId(),
-                taskDto.getCreateDate(),
-                taskDto.getDescription(),
-                taskDto.getDueDate(),
-                taskDto.getEstimation(),
-                taskDto.getPriority(),
-                taskDto.getStatus(),
-                taskDto.getTicketCode(),
-                taskDto.getUpdateDate(),
-                fromDto(taskDto.getAssignee()),
-                fromDto(taskDto.getProject()),
-                fromDto(taskDto.getReporter()));
+        Task task = Task.builder()
+                .id(taskDto.getId())
+                .createDate(taskDto.getCreateDate())
+                .description(taskDto.getDescription())
+                .dueDate(taskDto.getDueDate())
+                .estimation(taskDto.getEstimation())
+                .priority(taskDto.getPriority())
+                .status(taskDto.getStatus())
+                .ticketCode(taskDto.getTicketCode())
+                .updateDate(taskDto.getUpdateDate())
+                .assignee(fromDto(taskDto.getAssignee()))
+                .project(fromDto(taskDto.getProject()))
+                .reporter(fromDto(taskDto.getReporter()))
+                .build();
+        return task;
     }
 
     public static TaskDto toDto(Task task) {
-        return new TaskDto(task.getId(),
-                task.getCreateDate(),
-                task.getDescription(),
-                task.getDueDate(),
-                task.getEstimation(),
-                task.getPriority(),
-                task.getStatus(),
-                task.getTicketCode(),
-                task.getUpdateDate(),
-                toDto(task.getAssignee()),
-                toDto(task.getProject()),
-                toDto(task.getReporter()));
+        return TaskDto.builder()
+                .id(task.getId())
+                .createDate(task.getCreateDate())
+                .description(task.getDescription())
+                .dueDate(task.getDueDate())
+                .estimation(task.getEstimation())
+                .priority(task.getPriority())
+                .status(task.getStatus())
+                .ticketCode(task.getTicketCode())
+                .updateDate(task.getUpdateDate())
+                .assignee(toDto(task.getAssignee()))
+                .project(toDto(task.getProject()))
+                .reporter(toDto(task.getReporter()))
+                .build();
     }
 
     public static Project fromDto(ProjectDto projectDto) {
-        return new Project(projectDto.getId(),
-                projectDto.getProjectCode(),
-                projectDto.getSummary(),
-                projectDto.getProjectManager()!=null ? fromDto(projectDto.getProjectManager()) : null);
+        Project project = Project.builder()
+                .id(projectDto.getId())
+                .projectCode(projectDto.getProjectCode())
+                .summary(projectDto.getSummary())
+                .projectManager(projectDto.getProjectManager() != null ? fromDto(projectDto.getProjectManager()) : null)
+                .build();
+        return project;
     }
 
     public static ProjectDto toDto(Project project) {
-        return new ProjectDto(project.getId(),
-                project.getProjectCode(),
-                project.getSummary(),
-                project.getProjectManager()!= null ? toDto(project.getProjectManager()): null);
+        return ProjectDto.builder()
+                .id(project.getId())
+                .projectCode(project.getProjectCode())
+                .summary(project.getSummary())
+                .projectManager(project.getProjectManager() != null ? toDto(project.getProjectManager()) : null)
+                .build();
     }
 }
