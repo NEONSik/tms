@@ -4,7 +4,7 @@ import {UserService} from '../../services/user.service';
 import {TaskService} from '../../services/task.service';
 import {ProjectService} from '../../services/project.service';
 import {NewProjectComponent} from './components/new-project/new-project.component';
-import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatSelectModule, MatTableDataSource} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NewTaskComponent} from '../task/components/new-task/new-task.component';
 
