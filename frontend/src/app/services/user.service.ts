@@ -19,7 +19,7 @@ export class UserService {
   }
 
   getUserAll() {
-    return this.http.get(`api/users`);
+    return this.http.get(`api/v1/users`);
   }
 
   updateUser(id: number, user: User) {

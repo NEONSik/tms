@@ -11,7 +11,7 @@ export class ProjectService {
   }
 
   getProjects() {
-    return this.http.get(`api/v1/v1/projects`);
+    return this.http.get(`api/v1/projects`);
   }
 
   createProject(project: Project) {
