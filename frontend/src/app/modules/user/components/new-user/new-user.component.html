@@ -27,5 +27,5 @@
     </form>
   </div>
   <button (click)="close()">close</button>
-  <button (click)="send()">ok</button>
+  <button (click)="send()" [disabled]="newUserForm.invalid">ok</button>
 </div>

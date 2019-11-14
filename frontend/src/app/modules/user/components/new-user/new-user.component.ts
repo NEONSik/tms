@@ -18,8 +18,7 @@ export class NewUserComponent implements OnInit {
 
   ngOnInit() {
     this.newUserForm = this.formBulder.group({
-      email: ['', [Validators.email]],
-      // pattern() найти в инете
+      email: ['', [Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')]],
       password: ['', [Validators.minLength(5)]],
       role: ['', [Validators.required]]
     });
