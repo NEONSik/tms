@@ -15,8 +15,8 @@ export class LoginPageComponent {
   hide = true;
 
   getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-      this.email.hasError('email') ? 'Not a valid email' :
-        '';
+    // return this.email.hasError('required') ? 'You must enter a value' :
+    //   this.email.hasError('email') ? 'Not a valid email' :
+    //     ''; переделать не делать тернарный оператор в тернарном операторе
   }
 }
