@@ -32,8 +32,9 @@ export class NewProjectComponent implements OnInit {
 
   send() {
     this.newProject.projectCode = this.newProjectForm.controls.projectCode.value;
-    this.newProject.summary = this.newProjectForm.controls.summary.value,
-      this.newProject.projectManager = 2;
+    this.newProject.summary = this.newProjectForm.controls.summary.value;
+    this.newProject.projectManager = new User();
+    this.newProject.projectManager.id = parseFloat(this.newProjectForm.controls.projectManager.value);
     this.projectservice.createProject(this.newProject).subscribe(() => {
       this.dialogRef.close();
     });

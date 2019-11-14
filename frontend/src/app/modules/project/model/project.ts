@@ -5,5 +5,5 @@ export class Project {
   projectCode: string;
   summary: string;
   // need User
-  projectManager: number;
+  projectManager: User;
 }
