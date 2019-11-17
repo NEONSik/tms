@@ -1,0 +1,71 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> #id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="createDate">
+    <mat-header-cell *matHeaderCellDef> Create Date: </mat-header-cell>
+    <mat-cell *matCellDef="let element" > {{element.createDate}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef> Description: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="dueDate">
+    <mat-header-cell *matHeaderCellDef> Due Date: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.dueDate}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="estimation">
+    <mat-header-cell *matHeaderCellDef> Estimation: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.estimation}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="priority">
+    <mat-header-cell *matHeaderCellDef> Priority: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.priority}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> Status: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ticketCode">
+    <mat-header-cell *matHeaderCellDef> Ticket Code: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.ticketCode}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="updateDate">
+    <mat-header-cell *matHeaderCellDef> Update Date: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.updateDate}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="assignee">
+    <mat-header-cell *matHeaderCellDef> Assigne: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.assignee}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="project">
+    <mat-header-cell *matHeaderCellDef> From Project: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.project.projectCode}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="reporter">
+    <mat-header-cell *matHeaderCellDef> Reporter: </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.reporter.email}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</table>
+

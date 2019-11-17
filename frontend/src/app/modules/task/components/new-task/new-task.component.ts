@@ -40,7 +40,7 @@ export class NewTaskComponent implements OnInit {
     this.newTask.description = this.newTaskForm.controls.description.value;
     this.newTask.priority = this.newTaskForm.controls.priority.value;
     this.newTask.status = 'OPEN';
-    this.newTask.duedate = parseFloat(this.newTaskForm.controls.dueDate.value);
+    this.newTask.dueDate = parseFloat(this.newTaskForm.controls.dueDate.value);
     this.newTask.estimation = parseFloat(this.newTaskForm.controls.estimation.value);
     this.newTask.assignee = new User();
     this.newTask.assignee.id = parseFloat(this.newTaskForm.controls.assignee.value);

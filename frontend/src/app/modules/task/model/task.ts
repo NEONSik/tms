@@ -3,14 +3,14 @@ import {Project} from '../../project/model/project';
 
 export class Task {
   id: number;
-  createdate: number;
+  createDate: number;
   description: string;
-  duedate: number;
+  dueDate: number;
   estimation: number;
   priority: string;
   status: string;
-  ticketcode: string;
-  updatedate: number;
+  ticketCode: string;
+  updateDate: number;
   assignee: User;
   project: Project;
   reporter: User;

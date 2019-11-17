@@ -4,12 +4,13 @@ import {TaskPageComponent} from './components/task-page/task-page.component';
 import {TaskService} from '../../services/task.service';
 import {AppModule} from '../../app.module';
 import {NewTaskComponent} from './components/new-task/new-task.component';
-import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatSelectModule, MatTable, MatTableDataSource, MatTableModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { TaskTableComponent } from './components/task-table/task-table.component';
 
 
 @NgModule({
-  declarations: [TaskPageComponent, NewTaskComponent],
+  declarations: [TaskPageComponent, NewTaskComponent, TaskTableComponent],
   imports: [
     CommonModule,
     MatInputModule,
@@ -17,8 +18,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule
   ],
-  exports: [NewTaskComponent],
+  exports: [NewTaskComponent, TaskTableComponent],
   providers: [TaskService],
   entryComponents: [NewTaskComponent]
 })

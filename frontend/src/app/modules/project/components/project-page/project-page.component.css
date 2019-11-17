@@ -9,7 +9,7 @@ width: 100%;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  padding: 20px;
+  padding: 150px;
 }
 .leftside span {
   min-width:150px;
