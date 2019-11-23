@@ -31,6 +31,11 @@ public class UserController {
         return Converter.toDto(user);
     }
 
+    @GetMapping("/email/{email}")
+    private UserDto get(@PathVariable String email){
+        return Converter.toDto(userService.getByEmail(email));
+    }
+
     @PostMapping
     private UserDto create(@RequestBody UserDto userDto) {
         User user = userService.create(Converter.fromDto(userDto));

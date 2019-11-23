@@ -8,13 +8,12 @@ import com.netcracker.lazarev.tms.entity.User;
 public class Converter {
 
     public static User fromDto(UserDto userDto) {
-        User user = User.builder()
+        return User.builder()
                 .id(userDto.getId())
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
                 .role(userDto.getRole())
                 .build();
-        return user;
     }
 
     public static UserDto toDto(User user) {
@@ -27,7 +26,7 @@ public class Converter {
     }
 
     public static Task fromDto(TaskDto taskDto) {
-        Task task = Task.builder()
+        return Task.builder()
                 .id(taskDto.getId())
                 .createDate(taskDto.getCreateDate())
                 .description(taskDto.getDescription())
@@ -41,7 +40,6 @@ public class Converter {
                 .project(fromDto(taskDto.getProject()))
                 .reporter(fromDto(taskDto.getReporter()))
                 .build();
-        return task;
     }
 
     public static TaskDto toDto(Task task) {
@@ -62,13 +60,12 @@ public class Converter {
     }
 
     public static Project fromDto(ProjectDto projectDto) {
-        Project project = Project.builder()
+        return Project.builder()
                 .id(projectDto.getId())
                 .projectCode(projectDto.getProjectCode())
                 .summary(projectDto.getSummary())
                 .projectManager(projectDto.getProjectManager() != null ? fromDto(projectDto.getProjectManager()) : null)
                 .build();
-        return project;
     }
 
     public static ProjectDto toDto(Project project) {
