@@ -10,8 +10,8 @@ export class ProjectService {
   constructor(private http: HttpClient) {
   }
 
-  getProjects() {
-    return this.http.get(`api/v1/projects`);
+  getProjects(page: number, size: number, sort: string) {
+    return this.http.get(`api/v1/projects?page=${page}&size=${size}&sort=${sort}`);
   }
 
   createProject(project: Project) {

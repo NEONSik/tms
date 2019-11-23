@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {Project} from '../../model/project';
 import {User} from '../../../user/model/user';
 import {TaskService} from '../../../../services/task.service';
 import {ProjectService} from '../../../../services/project.service';
-import {MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 
 @Component({
@@ -11,25 +11,55 @@ import {MatTableDataSource} from '@angular/material';
   templateUrl: './project-table.component.html',
   styleUrls: ['./project-table.component.css']
 })
-export class ProjectTableComponent implements OnInit {
-  public projectTable: Project[];
+export class ProjectTableComponent implements AfterViewInit {
+  public projects: Project[];
   public displayedColumns: string[] = ['id', 'projectCode', 'summary', 'projectManager'];
   public dataSource: MatTableDataSource<Project>;
   public totalSize = 0;
+  public pageSize = 5;
+  public currentPage = 0;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private projectservice: ProjectService) {
+  constructor(private projectService: ProjectService, private changeDetectorRefs: ChangeDetectorRef) {
   }
 
-  ngOnInit() {
-    this.getTable();
+  ngAfterViewInit(): void {
+    this.getData();
   }
 
-  private getTable() {
-    this.projectservice.getProjects().subscribe((projectTable: Project[]) => {
-      this.projectTable = projectTable;
-      this.dataSource = new MatTableDataSource(this.projectTable);
-      this.totalSize = this.projectTable.length;
-    });
+  public handlePage(e: any) {
+    this.currentPage = e.pageIndex;
+    this.pageSize = e.pageSize;
+    this.updateData();
+  }
+
+  private getData() {
+    this.sort.active = 'id';
+    this.sort.direction = 'asc';
+    this.projectService.getProjects(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: any) => {
+        this.projects = data.content;
+        this.dataSource = new MatTableDataSource(this.projects);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.totalSize = data.totalElements;
+      });
+  }
+
+  private updateData() {
+    if (this.sort.active === '' || this.sort.direction === '') {
+      this.sort.active = 'id';
+      this.sort.direction = 'asc';
+    }
+    this.projectService.getProjects(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: any) => {
+        this.projects = data.content;
+        this.dataSource = new MatTableDataSource(this.projects);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.totalSize = data.totalElements;
+      });
   }
 }
 

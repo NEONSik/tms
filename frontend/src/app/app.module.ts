@@ -17,10 +17,10 @@ import {
   MatButtonModule, MatExpansionModule, MatFormFieldControl,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatPaginatorModule,
   MatRippleModule,
   MatSidenavModule,
-  MatSliderModule, MatTableModule, MatTabsModule
+  MatSliderModule, MatSortModule, MatTableModule, MatTabsModule
 } from '@angular/material';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {UserModule} from './modules/user/user.module';
@@ -75,7 +75,9 @@ const appRoutes: Routes = [
     NavBarModule,
     MatExpansionModule,
     TaskModule,
-    ProjectModule
+    ProjectModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   exports: [
     ProjectTableComponent,

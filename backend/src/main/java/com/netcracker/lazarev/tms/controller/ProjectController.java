@@ -5,6 +5,8 @@ import com.netcracker.lazarev.tms.dto.ProjectDto;
 import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +24,11 @@ public class ProjectController {
     }
 
     @GetMapping
-    private List<ProjectDto> getAll() {
-        List<Project> projects = projectService.getAll();
-        return projects.stream().map(Converter::toDto).collect(Collectors.toList());
+    public Page<ProjectDto> getAll(
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size,
+            @RequestParam(value = "sort") String sort) {
+        return projectService.findAll(page, size, sort).map(Converter::toDto);
     }
 
     @GetMapping("/{id}")

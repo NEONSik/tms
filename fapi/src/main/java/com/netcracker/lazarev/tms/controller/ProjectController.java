@@ -1,10 +1,9 @@
 package com.netcracker.lazarev.tms.controller;
 
+import com.netcracker.lazarev.tms.model.Page;
 import com.netcracker.lazarev.tms.model.Project;
 import com.netcracker.lazarev.tms.service.ProjectService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/projects")
@@ -17,8 +16,11 @@ public class ProjectController {
     }
 
     @GetMapping
-    private List<Project> getAll() {
-        return projectService.getAll();
+    public Page<Project> getAll(
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size,
+            @RequestParam(value = "sort") String sort) {
+        return projectService.getAll(page, size, sort);
     }
 
     @GetMapping("/{id}")

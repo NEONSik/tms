@@ -3,6 +3,10 @@ package com.netcracker.lazarev.tms.service;
 import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,4 +41,15 @@ public class ProjectService {
     public void delete(Long id) {
         projectRepository.deleteById(id);
     }
+
+    public Page<Project> findAll(int page, int size, String sort){
+    String[] params = sort.split(",");
+    Pageable pageRequest;
+     if (params[1].equals("asc")) {
+        pageRequest = PageRequest.of(page,size);
+    } else {
+        pageRequest = PageRequest.of(page, size, Sort.by(params[0]).descending());
+    }
+    return projectRepository.findAll(pageRequest);
+}
 }
