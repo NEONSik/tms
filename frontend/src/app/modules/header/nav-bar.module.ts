@@ -7,6 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {NavBarComponent} from './components/header/nav-bar.component';
 import {NewTaskComponent} from '../task/components/new-task/new-task.component';
 import {TaskModule} from '../task/task.module';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -21,7 +22,8 @@ import {TaskModule} from '../task/task.module';
     MatFormFieldModule,
     FormsModule,
     MatDialogModule,
-    TaskModule
+    TaskModule,
+    RouterModule
   ],
   exports: [
     NavBarComponent
