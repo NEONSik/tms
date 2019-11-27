@@ -6,6 +6,7 @@ import com.netcracker.lazarev.tms.entity.User;
 import com.netcracker.lazarev.tms.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping
-    private UserDto create(@RequestBody UserDto userDto) {
+    private UserDto create(@Valid @RequestBody UserDto userDto) {
         User user = userService.create(Converter.fromDto(userDto));
         return Converter.toDto(user);
     }

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,10 +20,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "password")
+    @NotBlank @NotNull @Column(name = "password")
     private String password;
-    @Column(name = "role")
+    @NotBlank @NotNull @Column(name = "role")
     private String role;
-    @Column(name = "email")
+    @NotNull @NotBlank @Column(name = "email")
     private String email;
 }
