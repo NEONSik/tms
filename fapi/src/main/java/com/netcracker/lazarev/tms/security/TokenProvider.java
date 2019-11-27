@@ -1,5 +1,6 @@
 package com.netcracker.lazarev.tms.security;
 
+import com.netcracker.lazarev.tms.service.UserService;
 import io.jsonwebtoken.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,12 @@ import java.util.stream.Collectors;
 
 @Component
 public class TokenProvider implements Serializable {
+
+    private final UserService userService;
+
+    public TokenProvider(UserService userService) {
+        this.userService = userService;
+    }
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -50,6 +57,7 @@ public class TokenProvider implements Serializable {
         return Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(SecurityJwtConstants.AUTHORITIES_KEY, authorities)
+                .claim("id", userService.getByEmail(authentication.getName()).getId().toString())
                 .signWith(SignatureAlgorithm.HS256, SecurityJwtConstants.SIGNING_KEY)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityJwtConstants.ACCESS_TOKEN_VALIDITY_SECONDS * 1000))

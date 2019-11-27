@@ -6,11 +6,10 @@ import {UserPageComponent} from './modules/user/components/user-page/user-page.c
 import {Routes, RouterModule} from '@angular/router';
 import {HomePageComponent} from './modules/homepage/components/homePage/home-page.component';
 import {ProjectTableComponent} from './modules/project/components/project-table/project-table.component';
-import {ErrorComponent} from './modules/error/components/error/error.component';
 import {ProjectPageComponent} from './modules/project/components/project-page/project-page.component';
 import {LoginPageComponent} from './modules/login/components/login-page/login-page.component';
 import {NavBarComponent} from './modules/header/components/header/nav-bar.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 // import {BottomSheetOverviewExampleSheet, TaskPageComponent} from './modules/task/components/task-page/task-page.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
@@ -30,8 +29,9 @@ import {TaskPageComponent} from './modules/task/components/task-page/task-page.c
 import {NavBarModule} from './modules/header/nav-bar.module';
 import {TaskModule} from './modules/task/task.module';
 import {ProjectModule} from './modules/project/project.module';
-
-
+import {AuthInterceptor} from './interceptors/auth.interceptor';
+import {HomePageModule} from './modules/homepage/home-page.module';
+import {LoginModule} from './modules/login/login.module';
 
 
 const appRoutes: Routes = [
@@ -45,44 +45,27 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UserPageComponent,
-    ProjectTableComponent,
-    ErrorComponent,
-    ProjectPageComponent,
-    LoginPageComponent,
-    UserTableComponent,
-    HomePageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRippleModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatTabsModule,
-    MatTableModule,
     UserModule,
+    HomePageModule,
     NavBarModule,
-    MatExpansionModule,
     TaskModule,
     ProjectModule,
-    MatSortModule,
-    MatPaginatorModule
+    LoginModule
   ],
   exports: [
-    ProjectTableComponent,
-    UserTableComponent
   ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
