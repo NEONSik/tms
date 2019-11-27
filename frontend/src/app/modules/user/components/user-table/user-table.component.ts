@@ -14,7 +14,7 @@ export class UserTableComponent implements OnInit {
   public userTable: User[];
   public dataSource: MatTableDataSource<User>;
   public totalSize = 0;
-  public displayedColumns: string[] = ['id', 'email', 'role'];
+  public displayedColumns: string[] = ['email', 'role'];
 
 
   constructor(private userService: UserService) {

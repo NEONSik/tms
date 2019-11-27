@@ -1,7 +1,6 @@
 /*!*for all pages*!*/
 html {
   /*font-size: 10px;*/
-  background-image: url("user (1).jpg");
 
 
 }
@@ -114,7 +113,6 @@ html {
 .user_information {
   width: 25%;
   /*background-color: black;*/
-  background-image: url("Снимок.PNG");
   float: left;
   margin: 2rem auto;
 

@@ -2,32 +2,15 @@
 
 
 
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef> #id </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-  </ng-container>
-
-
   <ng-container matColumnDef="createDate">
     <mat-header-cell *matHeaderCellDef> Create Date: </mat-header-cell>
     <mat-cell *matCellDef="let element" > {{element.createDate}} </mat-cell>
   </ng-container>
 
 
-  <ng-container matColumnDef="description">
-    <mat-header-cell *matHeaderCellDef> Description: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
-  </ng-container>
-
-
   <ng-container matColumnDef="dueDate">
     <mat-header-cell *matHeaderCellDef> Due Date: </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.dueDate}} </mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="estimation">
-    <mat-header-cell *matHeaderCellDef> Estimation: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.estimation}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="priority">

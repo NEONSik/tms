@@ -7,10 +7,11 @@ import {AppModule} from '../../app.module';
 import {NewUserComponent} from './components/new-user/new-user.component';
 import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {UserPageComponent} from './components/user-page/user-page.component';
 
 
 @NgModule({
-  declarations: [NewUserComponent],
+  declarations: [NewUserComponent, UserPageComponent, UserTableComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -20,7 +21,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     MatSelectModule,
     MatInputModule
   ],
-  exports: [NewUserComponent],
+  exports: [NewUserComponent, UserTableComponent, UserPageComponent],
   providers: [UserService],
   entryComponents: [NewUserComponent]
 })

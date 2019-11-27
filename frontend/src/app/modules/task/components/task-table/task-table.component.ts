@@ -11,7 +11,7 @@ import {Task} from '../../model/task';
 })
 export class TaskTableComponent implements OnInit {
   public taskTable: Task[];
-  public displayedColumns: string[] = ['id', 'createDate', 'description', 'dueDate', 'estimation', 'priority', 'status', 'ticketCode', 'updateDate', 'assignee', 'project', 'reporter'];
+  public displayedColumns: string[] = ['createDate', 'dueDate', 'priority', 'status', 'ticketCode', 'updateDate', 'assignee', 'project', 'reporter'];
   public dataSource: MatTableDataSource<Task>;
   public totalSize = 0;
 
