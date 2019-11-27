@@ -25,6 +25,8 @@ export class ProjectTableComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.sort.active = 'id';
+    this.sort.direction = 'asc';
     this.getData();
   }
 
@@ -35,8 +37,6 @@ export class ProjectTableComponent implements AfterViewInit {
   }
 
   private getData() {
-    this.sort.active = 'id';
-    this.sort.direction = 'asc';
     this.projectService.getProjects(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
       .subscribe((data: any) => {
         this.projects = data.content;
@@ -44,6 +44,7 @@ export class ProjectTableComponent implements AfterViewInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.totalSize = data.totalElements;
+        this.pageSize = data.numberOfElements;
       });
   }
 
