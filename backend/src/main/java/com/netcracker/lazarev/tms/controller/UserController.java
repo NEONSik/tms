@@ -4,6 +4,7 @@ import com.netcracker.lazarev.tms.dto.Converter;
 import com.netcracker.lazarev.tms.dto.UserDto;
 import com.netcracker.lazarev.tms.entity.User;
 import com.netcracker.lazarev.tms.service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,9 +22,11 @@ public class UserController {
     }
 
     @GetMapping
-    private List<UserDto> getAll() {
-        List<User> users = userService.getAll();
-        return users.stream().map(Converter::toDto).collect(Collectors.toList());
+    private Page<UserDto> getAll(
+        @RequestParam(value="page") int page,
+        @RequestParam(value="size")int size,
+        @RequestParam(value="sort")String sort){
+        return userService.findAll(page,size,sort).map(Converter::toDto);
     }
 
     @GetMapping("/{id}")

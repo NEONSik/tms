@@ -9,7 +9,7 @@ import {
   MatInputModule, MatPaginatorModule,
   MatRippleModule,
   MatSelectModule, MatSidenavModule,
-  MatSliderModule, MatSortModule, MatTableModule, MatTabsModule
+  MatSliderModule, MatSortModule, MatTableModule, MatTabsModule, MatToolbarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -40,7 +40,8 @@ import {TaskModule} from '../task/task.module';
     MatSortModule,
     MatPaginatorModule,
     NavBarModule,
-    TaskModule
+    TaskModule,
+    MatToolbarModule
   ],
   providers: [AuthService]
 })

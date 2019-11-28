@@ -16,12 +16,12 @@ export class ProjectTableComponent implements AfterViewInit {
   public displayedColumns: string[] = ['id', 'projectCode', 'summary', 'projectManager'];
   public dataSource: MatTableDataSource<Project>;
   public totalSize = 0;
-  public pageSize = 5;
+  public pageSize = 10;
   public currentPage = 0;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private projectService: ProjectService, private changeDetectorRefs: ChangeDetectorRef) {
+  constructor(private projectService: ProjectService) {
   }
 
   ngAfterViewInit(): void {
@@ -44,7 +44,6 @@ export class ProjectTableComponent implements AfterViewInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.totalSize = data.totalElements;
-        this.pageSize = data.numberOfElements;
       });
   }
 
@@ -57,7 +56,6 @@ export class ProjectTableComponent implements AfterViewInit {
       .subscribe((data: any) => {
         this.projects = data.content;
         this.dataSource = new MatTableDataSource(this.projects);
-        this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.totalSize = data.totalElements;
       });

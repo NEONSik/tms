@@ -32,6 +32,6 @@
 </table>
 <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[1, 2, 3, 5, 7, 10]" [showFirstLastButtons]="true"
                [length]="totalSize"
-               [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
+               [pageIndex]="currentPage" (page)="handlePage($event)">
 </mat-paginator>
 

@@ -7,7 +7,7 @@ import {Project} from '../modules/project/model/project';
 })
 export class ProjectService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient){
   }
 
   getProjects(page: number, size: number, sort: string) {

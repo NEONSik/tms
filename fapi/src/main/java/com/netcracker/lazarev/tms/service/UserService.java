@@ -1,9 +1,12 @@
 package com.netcracker.lazarev.tms.service;
 
+import com.netcracker.lazarev.tms.model.Page;
 import com.netcracker.lazarev.tms.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,13 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service("customUserDetailsService")
-public class UserService  implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     private RestTemplate restTemplate;
     @Value("${backend.url}")
@@ -31,28 +32,28 @@ public class UserService  implements UserDetailsService {
     }
 
     public User get(Long id) {
-        return restTemplate.getForObject(backendURL+"users/"+id, User.class);
+        return restTemplate.getForObject(backendURL + "users/" + id, User.class);
     }
 
-    public User getByEmail(String login){
-        return restTemplate.getForObject(backendURL+"users/email/"+login, User.class);
+    public User getByEmail(String login) {
+        return restTemplate.getForObject(backendURL + "users/email/" + login, User.class);
     }
 
-    public List<User> getAll() {
-        return Arrays.asList(restTemplate.getForObject(backendURL+"users/", User[].class));
+    public Page<User> getAll(int page, int size, String sort) {
+        return exchangeAsPAge(backendURL + "users" + getPageQuery(page, size, sort), new ParameterizedTypeReference<Page<User>>() {});
     }
 
     public User create(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        return restTemplate.postForObject(backendURL+"users/", user, User.class);
+        return restTemplate.postForObject(backendURL + "users/", user, User.class);
     }
 
     public void update(User user, Long id) {
-        restTemplate.put(backendURL+"users/"+id, user);
+        restTemplate.put(backendURL + "users/" + id, user);
     }
 
     public void delete(Long id) {
-        restTemplate.delete(backendURL+"users/"+id);
+        restTemplate.delete(backendURL + "users/" + id);
     }
 
     @Override
@@ -68,5 +69,11 @@ public class UserService  implements UserDetailsService {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
         return authorities;
+    }
+    private String getPageQuery(int page, int size, String sort){
+        return "?page="+page+"&size="+size+"&sort="+sort;
+    }
+    public <T> Page<T> exchangeAsPAge(String uri, ParameterizedTypeReference<Page<T>> responseType) {
+        return restTemplate.exchange(uri, HttpMethod.GET, null, responseType).getBody();
     }
 }

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {User} from '../../model/user';
 import {UserService} from '../../../../services/user.service';
-import {Project} from '../../../project/model/project';
-import {MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+
 
 
 @Component({
@@ -10,26 +10,53 @@ import {MatTableDataSource} from '@angular/material';
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.css']
 })
-export class UserTableComponent implements OnInit {
-  public userTable: User[];
+export class UserTableComponent implements AfterViewInit {
+  public users: User[];
+  public displayedColumns: string[] = ['email', 'role'];
   public dataSource: MatTableDataSource<User>;
   public totalSize = 0;
-  public displayedColumns: string[] = ['email', 'role'];
-
+  public pageSize = 10;
+  public currentPage = 0;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(private userService: UserService) {
   }
 
-  ngOnInit() {
-    this.getTableUser();
+  ngAfterViewInit(): void {
+    this.sort.active = 'email';
+    this.sort.direction = 'asc';
+    this.getData();
   }
 
-  private getTableUser() {
-    this.userService.getUserAll().subscribe((userTable: User[]) => {
-      this.userTable = userTable;
-      this.dataSource = new MatTableDataSource(this.userTable);
-      this.totalSize = this.userTable.length;
-    });
+  public handlePage(e: any) {
+    this.currentPage = e.pageIndex;
+    this.pageSize = e.pageSize;
+    this.updateData();
+  }
+
+  private getData() {
+    this.userService.getUserAll(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: any) => {
+        this.users = data.content;
+        this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.totalSize = data.totalElements;
+      });
+  }
+
+  private updateData() {
+    if (this.sort.active === '' || this.sort.direction === '') {
+      this.sort.active = 'email';
+      this.sort.direction = 'asc';
+    }
+    this.userService.getUserAll(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: any) => {
+        this.users = data.content;
+        this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.sort = this.sort;
+        this.totalSize = data.totalElements;
+      });
   }
 }
-

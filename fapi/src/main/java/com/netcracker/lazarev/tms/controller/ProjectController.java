@@ -11,8 +11,8 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-    public ProjectController(ProjectService ProjectService) {
-        this.projectService = ProjectService;
+    public ProjectController(ProjectService projectService) {
+        this.projectService = projectService;
     }
 
     @GetMapping

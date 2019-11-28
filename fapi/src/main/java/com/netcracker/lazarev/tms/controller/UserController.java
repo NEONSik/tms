@@ -1,11 +1,10 @@
 package com.netcracker.lazarev.tms.controller;
 
 
+import com.netcracker.lazarev.tms.model.Page;
 import com.netcracker.lazarev.tms.model.User;
 import com.netcracker.lazarev.tms.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -18,8 +17,11 @@ public class UserController {
     }
 
     @GetMapping
-    private List<User> getAll() {
-        return userService.getAll();
+    public Page<User> getAll(
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size,
+            @RequestParam(value = "sort") String sort) {
+        return userService.getAll(page, size, sort);
     }
 
     @GetMapping("/{id}")

@@ -17,9 +17,8 @@ export class UserService {
   getUser(id: number) {
     return this.http.get(`api/v1/users/${id}`);
   }
-
-  getUserAll() {
-    return this.http.get(`api/v1/users`);
+  getUserAll(page: number, size: number, sort: string) {
+    return this.http.get(`api/v1/users?page=${page}&size=${size}&sort=${sort}`);
   }
 
   updateUser(id: number, user: User) {
