@@ -1,14 +1,14 @@
 package com.netcracker.lazarev.tms.service;
 
 
+import com.netcracker.lazarev.tms.model.Page;
 import com.netcracker.lazarev.tms.model.Task;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class TaskService {
@@ -24,8 +24,8 @@ public class TaskService {
         return restTemplate.getForObject(backendURL+"tasks/"+id, Task.class);
     }
 
-    public List<Task> getAll() {
-        return Arrays.asList(restTemplate.getForObject(backendURL+"tasks/", Task[].class));
+    public Page<Task> getAll(int page,int size, String sort) {
+        return exchangeAsPage(backendURL+"tasks"+getPageQuery(page,size,sort),new ParameterizedTypeReference<Page<Task>>(){});
     }
 
     public Task create(Task task) {
@@ -38,5 +38,11 @@ public class TaskService {
 
     public void delete(Long id) {
         restTemplate.delete(backendURL+"tasks/"+id);
+    }
+    private String getPageQuery(int page, int size, String sort){
+        return "?page="+page+"&size="+size+"&sort="+sort;
+    }
+    public <T> Page<T> exchangeAsPage(String uri,ParameterizedTypeReference<Page<T>> responseType){
+        return restTemplate.exchange(uri,HttpMethod.GET,null,responseType).getBody();
     }
 }

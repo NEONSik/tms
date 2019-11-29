@@ -21,11 +21,7 @@ export class TaskService {
     return this.http.delete(`api/v1/tasks/${id}`);
   }
 
-  getTaskPage(page: number, size: number, sort: string) {
-    return this.http.get(`api/v1/tasks/pm?page=${page}&size=${size}&sort=${sort}`);
-  }
-
-  getTasks() {
-    return this.http.get(`api/v1/tasks`);
+  getTasks(page: number, size: number, sort: string) {
+    return this.http.get(`api/v1/tasks?page=${page}&size=${size}&sort=${sort}`);
   }
 }

@@ -4,6 +4,7 @@ import com.netcracker.lazarev.tms.dto.Converter;
 import com.netcracker.lazarev.tms.dto.TaskDto;
 import com.netcracker.lazarev.tms.entity.Task;
 import com.netcracker.lazarev.tms.service.TaskService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +21,11 @@ public class TaskController {
     }
 
     @GetMapping
-    private List<TaskDto> getAll() {
-        List<Task> tasks = taskService.getAll();
-        return tasks.stream().map(Converter::toDto).collect(Collectors.toList());
+    private Page<TaskDto> getAll(
+            @RequestParam(value="page") int page,
+            @RequestParam(value="size") int size,
+            @RequestParam(value="sort") String sort) {
+    return taskService.findAll(page,size,sort).map(Converter::toDto);
     }
 
     @GetMapping("/{id}")

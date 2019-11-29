@@ -4,9 +4,19 @@ import {TaskPageComponent} from './components/task-page/task-page.component';
 import {TaskService} from '../../services/task.service';
 import {AppModule} from '../../app.module';
 import {NewTaskComponent} from './components/new-task/new-task.component';
-import {MatFormFieldModule, MatInputModule, MatSelectModule, MatTable, MatTableDataSource, MatTableModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule, MatSortModule,
+  MatTable,
+  MatTableDataSource,
+  MatTableModule
+} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TaskTableComponent } from './components/task-table/task-table.component';
+import {MatPaginatorModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -18,7 +28,11 @@ import { TaskTableComponent } from './components/task-table/task-table.component
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
+    MatSortModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
   ],
   exports: [NewTaskComponent, TaskTableComponent],
   providers: [TaskService],

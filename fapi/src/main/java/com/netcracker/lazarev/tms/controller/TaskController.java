@@ -1,11 +1,10 @@
 package com.netcracker.lazarev.tms.controller;
 
 
+import com.netcracker.lazarev.tms.model.Page;
 import com.netcracker.lazarev.tms.model.Task;
 import com.netcracker.lazarev.tms.service.TaskService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/tasks")
@@ -18,8 +17,11 @@ public class TaskController {
     }
 
     @GetMapping
-    private List<Task> getAll() {
-        return taskService.getAll();
+    public Page<Task> getAll(
+            @RequestParam(value="page") int page,
+            @RequestParam(value="size") int size,
+            @RequestParam(value="sort") String sort) {
+        return taskService.getAll(page,size,sort);
     }
 
     @GetMapping("/{id}")

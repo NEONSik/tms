@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomePageComponent} from './components/homePage/home-page.component';
-import {MatTabsModule} from '@angular/material';
+import {MatInputModule, MatPaginatorModule, MatSortModule, MatTabsModule} from '@angular/material';
 import {NavBarModule} from '../header/nav-bar.module';
 import {ProjectTableComponent} from '../project/components/project-table/project-table.component';
 import {UserTableComponent} from '../user/components/user-table/user-table.component';
 import {ProjectModule} from '../project/project.module';
 import {UserModule} from '../user/user.module';
+import {TaskModule} from '../task/task.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -16,7 +18,12 @@ import {UserModule} from '../user/user.module';
     MatTabsModule,
     NavBarModule,
     ProjectModule,
-    UserModule
+    UserModule,
+    TaskModule,
+    MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   exports: [
     HomePageComponent
