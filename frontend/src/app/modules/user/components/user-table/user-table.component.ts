@@ -4,7 +4,6 @@ import {UserService} from '../../../../services/user.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 
-
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
@@ -12,7 +11,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 })
 export class UserTableComponent implements AfterViewInit {
   public users: User[];
-  public displayedColumns: string[] = ['email', 'role'];
+  public displayedColumns: string[] = ['email', 'role', 'delete'];
   public dataSource: MatTableDataSource<User>;
   public totalSize = 0;
   public pageSize = 10;
@@ -58,5 +57,13 @@ export class UserTableComponent implements AfterViewInit {
         this.dataSource.sort = this.sort;
         this.totalSize = data.totalElements;
       });
+  }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  public deleteUser(id: number) {
+    this.userService.deleteUser(id).subscribe(() => {
+      this.updateData();
+    });
   }
 }

@@ -3,7 +3,7 @@ import {Project} from '../../model/project';
 import {User} from '../../../user/model/user';
 import {TaskService} from '../../../../services/task.service';
 import {ProjectService} from '../../../../services/project.service';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 
 
 @Component({
@@ -13,7 +13,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 })
 export class ProjectTableComponent implements AfterViewInit {
   public projects: Project[];
-  public displayedColumns: string[] = ['id', 'projectCode', 'summary', 'projectManager'];
+  public displayedColumns: string[] = ['id', 'projectCode', 'summary', 'projectManager', 'delete'];
   public dataSource: MatTableDataSource<Project>;
   public totalSize = 0;
   public pageSize = 10;
@@ -60,5 +60,16 @@ export class ProjectTableComponent implements AfterViewInit {
         this.totalSize = data.totalElements;
       });
   }
+
+  public deleteProject(id: number) {
+    this.projectService.deleteProject(id).subscribe(() => {
+      this.updateData();
+    });
+  }
 }
+
+  // editProject(editProject: Project) {
+  //   const dialogRef = this.dialog.open(EditprojectComponent);
+  //   dialogRef.componentInstance.editProject = editProject;
+  // }
 

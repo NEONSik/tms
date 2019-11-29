@@ -17,4 +17,7 @@ export class ProjectService {
   createProject(project: Project) {
     return this.http.post(`api/v1/projects`, project);
   }
+  deleteProject(id: number) {
+    return this.http.delete(`api/v1/projects/${id}`);
+  }
 }

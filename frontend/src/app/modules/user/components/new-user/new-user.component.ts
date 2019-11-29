@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../model/user';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatTable} from '@angular/material';
 import {UserService} from '../../../../services/user.service';
+import {Project} from '../../../project/model/project';
 
 @Component({
   selector: 'app-new-user',
@@ -12,7 +13,7 @@ import {UserService} from '../../../../services/user.service';
 export class NewUserComponent implements OnInit {
   newUserForm: FormGroup;
   newUser: User = new User();
-
+  @ViewChild(MatTable, {static: false}) table: MatTable<User>;
   constructor(public diologRef: MatDialogRef<NewUserComponent>, private userservice: UserService, private formBulder: FormBuilder) {
   }
 
@@ -34,6 +35,7 @@ export class NewUserComponent implements OnInit {
     this.newUser.role = this.newUserForm.controls.role.value;
     this.userservice.createUser(this.newUser).subscribe(() => {
       this.diologRef.close();
+      this.table.renderRows();
     });
   }
 }
