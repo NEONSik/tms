@@ -7,10 +7,6 @@ import com.netcracker.lazarev.tms.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -23,10 +19,15 @@ public class UserController {
 
     @GetMapping
     private Page<UserDto> getAll(
-        @RequestParam(value="page") int page,
-        @RequestParam(value="size")int size,
-        @RequestParam(value="sort")String sort){
-        return userService.findAll(page,size,sort).map(Converter::toDto);
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "size", required = false) Integer size,
+            @RequestParam(value = "sort", required = false) String sort,
+            @RequestParam(value = "role", required = false) String role) {
+        if (role != null) {
+            return userService.findAll(role).map(Converter::toDto);
+        } else {
+            return userService.findAll(page, size, sort).map(Converter::toDto);
+        }
     }
 
     @GetMapping("/{id}")
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @GetMapping("/email/{email}")
-    private UserDto get(@PathVariable String email){
+    private UserDto get(@PathVariable String email) {
         return Converter.toDto(userService.getByEmail(email));
     }
 

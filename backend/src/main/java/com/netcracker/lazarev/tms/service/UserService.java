@@ -3,13 +3,11 @@ package com.netcracker.lazarev.tms.service;
 import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.entity.User;
 import com.netcracker.lazarev.tms.repository.UserRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -54,5 +52,11 @@ public class UserService {
 
     public User getByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public Page<User> findAll(String role) {
+        List<User> byRole = userRepository.findByRole(role);
+        PageImpl<User> users = new PageImpl<>(byRole);
+        return users;
     }
 }
