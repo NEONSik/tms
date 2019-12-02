@@ -20,10 +20,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @NotBlank @NotNull @Column(name = "password")
+    @Column(name = "password")
     private String password;
-    @NotBlank @NotNull @Column(name = "role")
+    @Column(name = "role")
     private String role;
-    @NotNull @NotBlank @Column(name = "email")
+    @Column(name = "email")
     private String email;
 }

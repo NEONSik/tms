@@ -6,6 +6,8 @@ import com.netcracker.lazarev.tms.model.Task;
 import com.netcracker.lazarev.tms.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/tasks")
 public class TaskController {
@@ -30,7 +32,7 @@ public class TaskController {
     }
 
     @PostMapping
-    private Task create(@RequestBody Task task) {
+    private Task create(@Valid @RequestBody Task task) {
         return taskService.create(task);
     }
 

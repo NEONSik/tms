@@ -5,6 +5,8 @@ import com.netcracker.lazarev.tms.model.Project;
 import com.netcracker.lazarev.tms.service.ProjectService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/projects")
 public class ProjectController {
@@ -29,7 +31,7 @@ public class ProjectController {
     }
 
     @PostMapping
-    private Project create(@RequestBody Project project) {
+    private Project create(@Valid @RequestBody Project project) {
         return projectService.create(project);
     }
 

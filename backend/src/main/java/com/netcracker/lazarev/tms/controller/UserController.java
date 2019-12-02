@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @PostMapping
-    private UserDto create(@Valid @RequestBody UserDto userDto) {
+    private UserDto create(@RequestBody UserDto userDto) {
         User user = userService.create(Converter.fromDto(userDto));
         return Converter.toDto(user);
     }

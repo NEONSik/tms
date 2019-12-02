@@ -6,6 +6,8 @@ import com.netcracker.lazarev.tms.model.User;
 import com.netcracker.lazarev.tms.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -30,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping
-    private User create(@RequestBody User user) {
+    private User create(@Valid @RequestBody User user) {
         return userService.create(user);
     }
 
