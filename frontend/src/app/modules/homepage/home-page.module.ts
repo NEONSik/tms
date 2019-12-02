@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomePageComponent} from './components/homePage/home-page.component';
-import {MatInputModule, MatPaginatorModule, MatSortModule, MatTabsModule} from '@angular/material';
+import {MatInputModule, MatPaginatorModule, MatSortModule, MatTabsModule, MatToolbarModule} from '@angular/material';
 import {NavBarModule} from '../header/nav-bar.module';
 import {ProjectTableComponent} from '../project/components/project-table/project-table.component';
 import {UserTableComponent} from '../user/components/user-table/user-table.component';
@@ -23,7 +23,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule
   ],
   exports: [
     HomePageComponent

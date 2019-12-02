@@ -1,5 +1,5 @@
 <div>
-  <div mat-dialog-content>
+<div mat-dialog-content>
     <form [formGroup]="newTaskForm">
       <div class="form-group">
         <mat-form-field>
@@ -27,7 +27,9 @@
       </div>
       <div class="form-group">
         <mat-form-field>
-          <input matInput placeholder="DueDate" formControlName="dueDate">
+          <input matInput [matDatepicker]="picker" formControlName="dueDate" placeholder="Due Date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="newTaskForm.controls.dueDate.invalid">required</mat-error>
         </mat-form-field>
       </div>
@@ -38,13 +40,28 @@
         </mat-form-field>
       </div>
       <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Assignee" formControlName="assignee">
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" placeholder="Assignee" formControlName="assignee"[matAutocomplete]="users">
+          <mat-autocomplete autoActiveFirstOption #users="matAutocomplete">
+            <mat-option *ngFor="let option of userOprionsFiltered" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
           <mat-error *ngIf="newTaskForm.controls.assignee.invalid">required</mat-error>
         </mat-form-field>
       </div>
     </form>
   </div>
   <button (click)="close()">close</button>
-  <button (click)="send()"[disabled]="newTaskForm.invalid">ok</button>
-</div>
+  <button (click)="send()" [disabled]="newTaskForm.invalid">ok</button>
+ </div>
+
+    <input  aria-label="Number" matInput [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+
+

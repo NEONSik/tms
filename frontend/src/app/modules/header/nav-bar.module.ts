@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MatDialogModule, MatFormFieldModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatTabsModule, MatToolbarModule} from '@angular/material';
 import {AppModule} from '../../app.module';
 import {UserModule} from '../user/user.module';
 import {FormsModule} from '@angular/forms';
@@ -23,7 +23,9 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     MatDialogModule,
     TaskModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule,
+    MatToolbarModule
   ],
   exports: [
     NavBarComponent
