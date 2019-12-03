@@ -17,8 +17,13 @@ export class UserService {
   getUser(id: number) {
     return this.http.get(`api/v1/users/${id}`);
   }
+
   getUserAll(page: number, size: number, sort: string) {
     return this.http.get(`api/v1/users?page=${page}&size=${size}&sort=${sort}`);
+  }
+
+  getProjectManager(role: string) {
+    return this.http.get(`api/v1/users?role=${role}`);
   }
 
   updateUser(id: number, user: User) {
