@@ -20,11 +20,12 @@ public class UserController {
 
     @GetMapping
     public Page<User> getAll(
-            @RequestParam(value = "page") int page,
-            @RequestParam(value = "size") int size,
-            @RequestParam(value = "sort") String sort) {
-        return userService.getAll(page, size, sort);
-    }
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "size", required = false) Integer size,
+            @RequestParam(value = "sort",required = false) String sort,
+            @RequestParam(value = "role",required = false) String role){
+            return userService.getAll(page, size, sort,role);
+        }
 
     @GetMapping("/{id}")
     private User get(@PathVariable(name = "id") Long id) {

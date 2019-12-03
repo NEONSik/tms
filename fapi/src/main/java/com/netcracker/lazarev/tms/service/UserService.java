@@ -39,8 +39,8 @@ public class UserService implements UserDetailsService {
         return restTemplate.getForObject(backendURL + "users/email/" + login, User.class);
     }
 
-    public Page<User> getAll(int page, int size, String sort) {
-        return exchangeAsPAge(backendURL + "users" + getPageQuery(page, size, sort), new ParameterizedTypeReference<Page<User>>() {});
+    public Page<User> getAll(Integer page, Integer size, String sort, String role) {
+        return exchangeAsPAge(backendURL + "users" + getPageQuery(page, size, sort,role), new ParameterizedTypeReference<Page<User>>() {});
     }
 
     public User create(User user) {
@@ -70,8 +70,18 @@ public class UserService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
         return authorities;
     }
-    private String getPageQuery(int page, int size, String sort){
-        return "?page="+page+"&size="+size+"&sort="+sort;
+    private String getPageQuery(Integer page, Integer size, String sort, String role){
+        String params;
+        if(page==null && size==null && sort==null){
+            if(role==null){
+                params="";
+            }else{
+                params="?role="+role;
+            }
+        }else{
+            params="?page="+page+"&size="+size+"&sort="+sort+"&role"+role;
+        }
+        return params;
     }
     public <T> Page<T> exchangeAsPAge(String uri, ParameterizedTypeReference<Page<T>> responseType) {
         return restTemplate.exchange(uri, HttpMethod.GET, null, responseType).getBody();

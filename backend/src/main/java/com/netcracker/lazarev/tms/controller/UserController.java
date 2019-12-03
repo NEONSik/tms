@@ -7,6 +7,10 @@ import com.netcracker.lazarev.tms.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -17,27 +21,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    private Page<UserDto> getAll(
-            @RequestParam(value = "page", required = false) Integer page,
-            @RequestParam(value = "size", required = false) Integer size,
-            @RequestParam(value = "sort", required = false) String sort,
-            @RequestParam(value = "role", required = false) String role) {
-        if (role != null) {
-            return userService.findAll(role).map(Converter::toDto);
-        } else {
-            return userService.findAll(page, size, sort).map(Converter::toDto);
+     @GetMapping
+        private Page<UserDto> getAll(
+                @RequestParam(value = "page", required = false) Integer page,
+                @RequestParam(value = "size", required = false) Integer size,
+                @RequestParam(value = "sort", required = false) String sort,
+                @RequestParam(value = "role", required = false) String role) {
+            if (role != null) {
+                return userService.findAll(role).map(Converter::toDto);
+            } else {
+                return userService.findAll(page, size, sort).map(Converter::toDto);
+            }
         }
-    }
-
-    @GetMapping("/{id}")
-    private UserDto get(@PathVariable(name = "id") Long id) {
-        User user = userService.get(id);
-        return Converter.toDto(user);
-    }
 
     @GetMapping("/email/{email}")
-    private UserDto get(@PathVariable String email) {
+    private UserDto get(@PathVariable String email){
         return Converter.toDto(userService.getByEmail(email));
     }
 

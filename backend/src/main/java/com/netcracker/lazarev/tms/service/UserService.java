@@ -1,6 +1,5 @@
 package com.netcracker.lazarev.tms.service;
 
-import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.entity.User;
 import com.netcracker.lazarev.tms.repository.UserRepository;
 import org.springframework.data.domain.*;
@@ -34,15 +33,24 @@ public class UserService {
         user.setId(id);
         return userRepository.save(user);
     }
-    public Page<User> findAll(int page, int size, String sort){
-        String[] params = sort.split(",");
-        Pageable pageRequest;
-        if (params[1].equals("asc")) {
-            pageRequest = PageRequest.of(page,size);
+
+    public Page<User> findAll(Integer page, Integer size, String sort, String role) {
+        if (page == null && size == null && sort == null) {
+            if (role == null) {
+                return new PageImpl<>(userRepository.findAll(), PageRequest.of(1, 1), 1);
+            } else {
+                return new PageImpl<>(userRepository.findByRole(role), PageRequest.of(1,1), 1);
+            }
         } else {
-            pageRequest = PageRequest.of(page, size, Sort.by(params[0]).descending());
+            String[] params = sort.split(",");
+            Pageable pageRequest;
+            if (params[1].equals("asc")) {
+                pageRequest = PageRequest.of(page, size);
+            } else {
+                pageRequest = PageRequest.of(page, size, Sort.by(params[0]).descending());
+            }
+            return userRepository.findAll(pageRequest);
         }
-        return userRepository.findAll(pageRequest);
     }
 
 
