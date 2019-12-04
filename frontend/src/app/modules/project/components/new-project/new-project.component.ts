@@ -23,8 +23,8 @@ export class NewProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userservice.getProjectManager(this.role).subscribe((data: any) => {
-      this.users = data.content;
+    this.userservice.getProjectManager(this.role).subscribe((data: User[]) => {
+      this.users = data;
     });
     this.newProjectForm = this.formbuilder.group({
       projectCode: ['', [Validators.required]],

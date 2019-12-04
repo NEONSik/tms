@@ -19,7 +19,7 @@
           <mat-error *ngIf="newProjectForm.controls.projectManager.invalid">required</mat-error>
         </mat-form-field>
         <mat-autocomplete autoActiveFirstOption #managers="matAutocomplete">
-          <mat-option *ngFor="let option of users" [value]="option">{{option.email}}</mat-option>
+          <mat-option *ngFor="let option of users" [value]="option">{{option}}</mat-option>
         </mat-autocomplete>
       </div>
     </form>

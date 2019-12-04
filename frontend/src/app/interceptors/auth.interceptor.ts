@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     this.dublicate = req.clone({
       setHeaders: {
-        Authorization: 'Bearer ${window.localStorage.getItem('token')}'
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`
       }
     });
     return next.handle(this.dublicate);

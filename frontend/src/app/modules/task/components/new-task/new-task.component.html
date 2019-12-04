@@ -42,11 +42,6 @@
       <div class="form-group">
         <mat-form-field class="example-full-width">
           <input matInput type="text" placeholder="Assignee" formControlName="assignee"[matAutocomplete]="users">
-          <mat-autocomplete autoActiveFirstOption #users="matAutocomplete">
-            <mat-option *ngFor="let option of userOprionsFiltered" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
           <mat-error *ngIf="newTaskForm.controls.assignee.invalid">required</mat-error>
         </mat-form-field>
       </div>
