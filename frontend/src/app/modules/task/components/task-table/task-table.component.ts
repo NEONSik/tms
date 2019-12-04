@@ -36,7 +36,7 @@ export class TaskTableComponent implements AfterViewInit {
   }
 
   private getData() {
-    this.taskService.getTasks(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+    this.taskService.getTasks(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
       .subscribe((data: any) => {
         this.tasks = data.content;
         this.dataSource = new MatTableDataSource(this.tasks);
@@ -51,7 +51,7 @@ export class TaskTableComponent implements AfterViewInit {
       this.sort.active = 'id';
       this.sort.direction = 'asc';
     }
-    this.taskService.getTasks(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+    this.taskService.getTasks(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
       .subscribe((data: any) => {
         this.tasks = data.content;
         this.dataSource = new MatTableDataSource(this.tasks);

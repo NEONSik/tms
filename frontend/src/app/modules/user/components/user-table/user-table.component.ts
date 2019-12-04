@@ -35,7 +35,7 @@ export class UserTableComponent implements AfterViewInit {
   }
 
   private getData() {
-    this.userService.getUserAll(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+    this.userService.getUserAll(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
       .subscribe((data: any) => {
         this.users = data.content;
         this.dataSource = new MatTableDataSource(this.users);
@@ -50,7 +50,7 @@ export class UserTableComponent implements AfterViewInit {
       this.sort.active = 'email';
       this.sort.direction = 'asc';
     }
-    this.userService.getUserAll(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+    this.userService.getUserAll(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
       .subscribe((data: any) => {
         this.users = data.content;
         this.dataSource = new MatTableDataSource(this.users);

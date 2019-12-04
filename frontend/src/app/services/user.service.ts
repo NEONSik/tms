@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../modules/user/model/user';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +11,27 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  createUser(user: User) {
-    return this.http.post(`api/v1/users`, user);
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>('api/v1/users', user);
   }
 
-  getUser(id: number) {
-    return this.http.get(`api/v1/users/${id}`);
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>('api/v1/users/${id}');
   }
 
-  getUserAll(page: number, size: number, sort: string) {
-    return this.http.get(`api/v1/users?page=${page}&size=${size}&sort=${sort}`);
+  getUserAll(page: number, size: number, sort: string): Observable<User[]> {
+    return this.http.get<User[]>('api/v1/users?page=${page}&size=${size}&sort=${sort}');
   }
 
-  getProjectManager(role: string) {
-    return this.http.get(`api/v1/users?role=${role}`);
+  getProjectManager(role: string): Observable<User[]> {
+    return this.http.get<User[]>('api/v1/users?role=${role}');
   }
 
-  updateUser(id: number, user: User) {
-    return this.http.put(`api/v1/users/${id}`, user);
+  updateUser(id: number, user: User): Observable<User> {
+    return this.http.put<User>('api/v1/users/${id}', user);
   }
 
-  deleteUser(id: number) {
-    return this.http.delete(`api/v1/users/${id}`);
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>('api/v1/users/${id}');
   }
 }

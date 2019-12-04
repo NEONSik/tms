@@ -37,7 +37,7 @@ export class ProjectTableComponent implements AfterViewInit {
   }
 
   private getData() {
-    this.projectService.getProjects(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+    this.projectService.getProjects(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
       .subscribe((data: any) => {
         this.projects = data.content;
         this.dataSource = new MatTableDataSource(this.projects);
@@ -52,7 +52,7 @@ export class ProjectTableComponent implements AfterViewInit {
       this.sort.active = 'id';
       this.sort.direction = 'asc';
     }
-    this.projectService.getProjects(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+    this.projectService.getProjects(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
       .subscribe((data: any) => {
         this.projects = data.content;
         this.dataSource = new MatTableDataSource(this.projects);
