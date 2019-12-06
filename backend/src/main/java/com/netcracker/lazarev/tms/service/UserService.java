@@ -62,9 +62,5 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public Page<User> findAll(String role) {
-        List<User> byRole = userRepository.findByRole(role);
-        PageImpl<User> users = new PageImpl<>(byRole);
-        return users;
-    }
+
 }
