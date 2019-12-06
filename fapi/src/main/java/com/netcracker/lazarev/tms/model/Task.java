@@ -1,29 +1,30 @@
 package com.netcracker.lazarev.tms.model;
 
+
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class Task {
     private Long id;
-    @NotBlank
     private Long createDate;
-    @NotBlank
+    @NotEmpty
     private String description;
-    @NotBlank
+    @NotNull
     private Long dueDate;
-    @NotBlank
+    @NotNull
     private Long estimation;
-    @NotBlank
+    @NotNull
     private String priority;
-    @NotBlank
+    @NotNull
     private String status;
-    @NotBlank
     private String ticketCode;
-    @NotBlank
     private Long updateDate;
+    @NotNull
     private User assignee;
+    @NotNull
     private Project project;
     private User reporter;
 }
