@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {User} from '../../model/user';
 import {UserService} from '../../../../services/user.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {Page} from '../../../../models/page';
 
 
 @Component({
@@ -35,8 +36,8 @@ export class UserTableComponent implements AfterViewInit {
   }
 
   private getData() {
-    this.userService.getUserAll(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
-      .subscribe((data: any) => {
+    this.userService.getUserAll(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: Page<User>) => {
         this.users = data.content;
         this.dataSource = new MatTableDataSource(this.users);
         this.dataSource.paginator = this.paginator;
@@ -50,8 +51,8 @@ export class UserTableComponent implements AfterViewInit {
       this.sort.active = 'email';
       this.sort.direction = 'asc';
     }
-    this.userService.getUserAll(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
-      .subscribe((data: any) => {
+    this.userService.getUserAll(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: Page<User>) => {
         this.users = data.content;
         this.dataSource = new MatTableDataSource(this.users);
         this.dataSource.sort = this.sort;

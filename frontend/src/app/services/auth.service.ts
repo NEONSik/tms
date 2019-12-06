@@ -11,6 +11,6 @@ export class AuthService {
   }
 
   login(login: LoginModel): Observable<Token> {
-    return this.http.post<Token>('token/generate-token', login);
+    return this.http.post<Token>(`token/generate-token`, login);
   }
 }

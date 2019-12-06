@@ -4,6 +4,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {TaskService} from '../../../../services/task.service';
 import {Task} from '../../model/task';
 import {ProjectService} from '../../../../services/project.service';
+import {Page} from '../../../../models/page';
 
 @Component({
   selector: 'app-task-table',
@@ -36,8 +37,8 @@ export class TaskTableComponent implements AfterViewInit {
   }
 
   private getData() {
-    this.taskService.getTasks(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
-      .subscribe((data: any) => {
+    this.taskService.getTasks(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: Page<Task>) => {
         this.tasks = data.content;
         this.dataSource = new MatTableDataSource(this.tasks);
         this.dataSource.paginator = this.paginator;
@@ -51,8 +52,8 @@ export class TaskTableComponent implements AfterViewInit {
       this.sort.active = 'id';
       this.sort.direction = 'asc';
     }
-    this.taskService.getTasks(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
-      .subscribe((data: any) => {
+    this.taskService.getTasks(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: Page<Task>) => {
         this.tasks = data.content;
         this.dataSource = new MatTableDataSource(this.tasks);
         this.dataSource.sort = this.sort;
