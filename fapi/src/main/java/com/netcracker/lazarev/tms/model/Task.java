@@ -3,14 +3,13 @@ package com.netcracker.lazarev.tms.model;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
 public class Task {
     private Long id;
     private Long createDate;
-    @NotEmpty
+    @NotNull
     private String description;
     @NotNull
     private Long dueDate;
