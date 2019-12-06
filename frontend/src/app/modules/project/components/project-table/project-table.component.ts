@@ -4,6 +4,8 @@ import {User} from '../../../user/model/user';
 import {TaskService} from '../../../../services/task.service';
 import {ProjectService} from '../../../../services/project.service';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from '@angular/material';
+import {Page} from '../../../../models/page';
+
 
 
 @Component({
@@ -37,8 +39,8 @@ export class ProjectTableComponent implements AfterViewInit {
   }
 
   private getData() {
-    this.projectService.getProjects(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
-      .subscribe((data: any) => {
+    this.projectService.getProjects(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: Page<Project>) => {
         this.projects = data.content;
         this.dataSource = new MatTableDataSource(this.projects);
         this.dataSource.paginator = this.paginator;
@@ -52,8 +54,8 @@ export class ProjectTableComponent implements AfterViewInit {
       this.sort.active = 'id';
       this.sort.direction = 'asc';
     }
-    this.projectService.getProjects(this.currentPage, this.pageSize, '${this.sort.active},${this.sort.direction}')
-      .subscribe((data: any) => {
+    this.projectService.getProjects(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
+      .subscribe((data: Page<Project>) => {
         this.projects = data.content;
         this.dataSource = new MatTableDataSource(this.projects);
         this.dataSource.sort = this.sort;
@@ -68,8 +70,8 @@ export class ProjectTableComponent implements AfterViewInit {
   }
 }
 
-  // editProject(editProject: Project) {
-  //   const dialogRef = this.dialog.open(EditprojectComponent);
-  //   dialogRef.componentInstance.editProject = editProject;
-  // }
+// editProject(editProject: Project) {
+//   const dialogRef = this.dialog.open(EditprojectComponent);
+//   dialogRef.componentInstance.editProject = editProject;
+// }
 
