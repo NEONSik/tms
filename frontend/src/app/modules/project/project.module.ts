@@ -17,7 +17,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProjectPageComponent} from './components/project-page/project-page.component';
 import {NavBarModule} from '../header/nav-bar.module';
 import {TaskModule} from '../task/task.module';
+
 import {RouterModule} from '@angular/router';
+
+import {MatAutocompleteModule} from '@angular/material';
+
 
 
 @NgModule({
@@ -35,7 +39,8 @@ import {RouterModule} from '@angular/router';
     MatPaginatorModule,
     NavBarModule,
     TaskModule,
-    RouterModule
+    RouterModule,
+    MatAutocompleteModule
   ],
   providers: [ProjectService],
   exports: [NewProjectComponent, ProjectTableComponent],

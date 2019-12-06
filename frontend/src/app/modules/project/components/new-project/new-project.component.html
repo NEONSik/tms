@@ -15,12 +15,14 @@
       </div>
       <div class="form-group">
         <mat-form-field>
-          <input matInput type="text" placeholder="Project Manager" formControlName="projectManager"[matAutocomplete]="managers">
+          <input matInput placeholder="Project Manager" formControlName="projectManager" [matAutocomplete]="users">
           <mat-error *ngIf="newProjectForm.controls.projectManager.invalid">required</mat-error>
+          <mat-autocomplete autoActiveFirstOption #users="matAutocomplete">
+            <mat-option *ngFor="let option of managersFilteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
-        <mat-autocomplete autoActiveFirstOption #managers="matAutocomplete">
-          <mat-option *ngFor="let option of users" [value]="option">{{option}}</mat-option>
-        </mat-autocomplete>
       </div>
     </form>
   </div>
