@@ -3,9 +3,14 @@
     <form [formGroup]="newTaskForm">
       <div class="form-group">
         <mat-form-field>
-          <input matInput placeholder="Project" formControlName="project">
+          <input matInput placeholder="Project" formControlName="project" [matAutocomplete]="projects">
           <mat-error *ngIf="newTaskForm.controls.project.invalid">required</mat-error>
         </mat-form-field>
+        <mat-autocomplete autoActiveFirstOption #projects="matAutocomplete">
+          <mat-option *ngFor="let option of FilteredProjects|async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
       </div>
       <div class="form-group">
         <mat-form-field>
@@ -27,6 +32,7 @@
       </div>
       <div class="form-group">
         <mat-form-field>
+<!--          <input matInput formControlName="dueDate" placeholder="Due Date">-->
           <input matInput [matDatepicker]="picker" formControlName="dueDate" placeholder="Due Date">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -40,10 +46,15 @@
         </mat-form-field>
       </div>
       <div class="form-group">
-        <mat-form-field class="example-full-width">
-          <input matInput type="text" placeholder="Assignee" formControlName="assignee"[matAutocomplete]="users">
+        <mat-form-field>
+          <input matInput placeholder="Assignee" formControlName="assignee" [matAutocomplete]="users">
           <mat-error *ngIf="newTaskForm.controls.assignee.invalid">required</mat-error>
         </mat-form-field>
+        <mat-autocomplete autoActiveFirstOption #users="matAutocomplete">
+                <mat-option *ngFor="let option of FilteredUsers|async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
       </div>
     </form>
   </div>
@@ -51,12 +62,5 @@
   <button (click)="send()" [disabled]="newTaskForm.invalid">ok</button>
  </div>
 
-    <input  aria-label="Number" matInput [formControl]="myControl"
-           [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
 
 

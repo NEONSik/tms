@@ -16,7 +16,7 @@ export class UserService {
     return this.http.post<User>(`api/v1/users`, user);
   }
 
-  getUser(id: number): Observable<User> {
+  getUserById(id: number): Observable<User> {
     return this.http.get<User>(`api/v1/users/${id}`);
   }
 
@@ -26,6 +26,10 @@ export class UserService {
 
   getProjectManager(role: string): Observable<Page<User>> {
     return this.http.get<Page<User>>(`api/v1/users?role=${role}`);
+  }
+
+  getUser(): Observable<Page<User>> {
+    return this.http.get<Page<User>>(`api/v1/users`);
   }
 
   updateUser(id: number, user: User): Observable<User> {

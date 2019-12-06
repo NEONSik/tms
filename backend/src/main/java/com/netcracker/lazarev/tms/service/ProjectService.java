@@ -1,16 +1,11 @@
 package com.netcracker.lazarev.tms.service;
 
+import com.netcracker.lazarev.tms.dto.ProjectDto;
 import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 @Service
 public class ProjectService {
 
@@ -23,10 +18,6 @@ public class ProjectService {
 
     public Project get(Long id) {
         return projectRepository.findById(id).get();
-    }
-
-    public List<Project> getAll() {
-        return projectRepository.findAll();
     }
 
     public Project create(Project project) {
@@ -42,14 +33,22 @@ public class ProjectService {
         projectRepository.deleteById(id);
     }
 
-    public Page<Project> findAll(int page, int size, String sort){
-    String[] params = sort.split(",");
-    Pageable pageRequest;
-     if (params[1].equals("asc")) {
-        pageRequest = PageRequest.of(page,size);
-    } else {
-        pageRequest = PageRequest.of(page, size, Sort.by(params[0]).descending());
+    public Page<Project> findAll(Integer page, Integer size, String sort, String projectCode) {
+        if (page == null && size == null && sort == null) {
+            if (projectCode == null) {
+                return new PageImpl<>(projectRepository.findAll(), PageRequest.of(1, 1), 1);
+            } else {
+                return new PageImpl<>(projectRepository.findByProjectCode(projectCode), PageRequest.of(1,1), 1);
+            }
+        } else {
+            String[] params = sort.split(",");
+            Pageable pageRequest;
+            if (params[1].equals("asc")) {
+                pageRequest = PageRequest.of(page, size);
+            } else {
+                pageRequest = PageRequest.of(page, size, Sort.by(params[0]).descending());
+            }
+            return projectRepository.findAll(pageRequest);
+        }
     }
-    return projectRepository.findAll(pageRequest);
-}
 }

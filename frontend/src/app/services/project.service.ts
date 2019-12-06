@@ -13,16 +13,20 @@ export class ProjectService {
   constructor(private http: HttpClient) {
   }
 
-  getProjects(page: number, size: number, sort: string): Observable<Page<Project>> {
+  getProjectsTable(page: number, size: number, sort: string): Observable<Page<Project>> {
     return this.http.get<Page<Project>>(`api/v1/projects?page=${page}&size=${size}&sort=${sort}`);
+  }
+
+  getProject(id: number): Observable<Project> {
+    return this.http.get<Project>(`api/v1/projects/${id}`);
+  }
+
+  getProjects(): Observable<Page<Project>> {
+    return this.http.get<Page<Project>>(`api/v1/projects`);
   }
 
   createProject(project: Project): Observable<Project> {
     return this.http.post<Project>(`api/v1/projects`, project);
-  }
-
-  getProjectCode(projectCode: boolean): Observable<Page<Project>> {
-    return this.http.get<Page<Project>>(`api/v1/projects`);
   }
 
   deleteProject(id: number): Observable<void> {

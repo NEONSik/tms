@@ -6,12 +6,7 @@ import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/projects")
@@ -26,10 +21,11 @@ public class ProjectController {
 
     @GetMapping
     public Page<ProjectDto> getAll(
-            @RequestParam(value = "page") int page,
-            @RequestParam(value = "size") int size,
-            @RequestParam(value = "sort") String sort) {
-        return projectService.findAll(page, size, sort).map(Converter::toDto);
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "size", required = false) Integer size,
+            @RequestParam(value = "sort", required = false) String sort,
+            @RequestParam(value = "projectCode", required = false) String projectCode) {
+            return projectService.findAll(page, size, sort,projectCode).map(Converter::toDto);
     }
 
     @GetMapping("/{id}")

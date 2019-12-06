@@ -21,10 +21,6 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-//    public List<User> getAll() {
-//        return userRepository.findAll();
-//    }
-
     public User create(User user) {
         return userRepository.save(user);
     }

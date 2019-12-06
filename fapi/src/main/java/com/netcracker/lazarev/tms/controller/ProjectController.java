@@ -19,10 +19,11 @@ public class ProjectController {
 
     @GetMapping
     public Page<Project> getAll(
-            @RequestParam(value = "page") int page,
-            @RequestParam(value = "size") int size,
-            @RequestParam(value = "sort") String sort) {
-        return projectService.getAll(page, size, sort);
+            @RequestParam(value = "page",required = false) Integer page,
+            @RequestParam(value = "size",required = false) Integer size,
+            @RequestParam(value = "sort",required = false) String sort,
+            @RequestParam(value = "projectCode",required = false)String projectCode) {
+        return projectService.getAll(page, size,sort,projectCode);
     }
 
     @GetMapping("/{id}")

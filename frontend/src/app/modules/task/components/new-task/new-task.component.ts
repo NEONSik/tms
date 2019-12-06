@@ -8,6 +8,8 @@ import {Project} from '../../../project/model/project';
 import {ProjectService} from '../../../../services/project.service';
 import {of} from 'rxjs';
 import {UserService} from '../../../../services/user.service';
+import {Page} from '../../../../models/page';
+
 
 @Component({
   selector: 'app-new-task',
@@ -18,15 +20,20 @@ export class NewTaskComponent implements OnInit {
 
   newTaskForm: FormGroup;
   newTask: Task = new Task();
-  users: User[];
-  role = 'Developer';
+  usersOptions: User[];
+  projectsOptions: Project[];
+  FilteredUsers;
+  FilteredProjects;
 
-  constructor(public dialogRef: MatDialogRef<NewTaskComponent>, private taskService: TaskService, private formBuilder: FormBuilder, public userService: UserService) {
+  constructor(public dialogRef: MatDialogRef<NewTaskComponent>, private taskService: TaskService, private formBuilder: FormBuilder, public projectService: ProjectService, public userService: UserService) {
   }
 
   ngOnInit() {
-    this.userService.getProjectManager(this.role).subscribe((data: any) => {
-      this.users = data;
+    this.projectService.getProjects().subscribe((data: Page<Project>) => {
+      this.projectsOptions = data.content;
+    });
+    this.userService.getUser().subscribe((data: Page<User>) => {
+      this.usersOptions = data.content;
     });
     this.newTaskForm = this.formBuilder.group({
       project: ['', [Validators.required]],
@@ -36,22 +43,42 @@ export class NewTaskComponent implements OnInit {
       estimation: ['', [Validators.required]],
       assignee: ['', [Validators.required]]
     });
+    this.autocomplete();
+  }
+
+  autocomplete() {
+    this.newTaskForm.controls.assignee.valueChanges.subscribe(user => {
+      this.FilteredUsers = this.filterUser(user);
+      this.newTaskForm.controls.project.valueChanges.subscribe(project => {
+        this.FilteredProjects = this.filterProject(project);
+      });
+    });
   }
 
   close() {
     this.dialogRef.close();
   }
 
+  filterUser(value: string) {
+    const filterValue = value.toLowerCase();
+    return of(this.usersOptions.filter((option) => option.email.toLowerCase().indexOf(filterValue) === 0).map(user => user.email));
+  }
+
+  filterProject(value: string) {
+    const filterValue = value.toLowerCase();
+    return of(this.projectsOptions.filter((option) => option.projectCode.toLowerCase().indexOf(filterValue) === 0).map(project => project.projectCode));
+  }
+
   send() {
     this.newTask.project = new Project();
-    this.newTask.project.id = parseFloat(this.newTaskForm.controls.project.value);
+    this.newTask.project.id = this.projectsOptions.find(project => project.projectCode === this.newTaskForm.controls.project.value).id;
     this.newTask.description = this.newTaskForm.controls.description.value;
     this.newTask.priority = this.newTaskForm.controls.priority.value;
-    this.newTask.status = 'OPEN';
-    this.newTask.dueDate = parseFloat(this.newTaskForm.controls.dueDate.value);
+    this.newTask.status = 'Open';
+    this.newTask.dueDate = Date.parse(this.newTaskForm.controls.dueDate.value);
     this.newTask.estimation = parseFloat(this.newTaskForm.controls.estimation.value);
     this.newTask.assignee = new User();
-    this.newTask.assignee.id = parseFloat(this.newTaskForm.controls.assignee.value);
+    this.newTask.assignee.id = this.usersOptions.find(user => user.email === this.newTaskForm.controls.assignee.value).id;
     this.newTask.reporter = new User();
     this.newTask.reporter.id = 1;
     this.taskService.createTask(this.newTask).subscribe(() => {

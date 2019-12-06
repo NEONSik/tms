@@ -20,28 +20,39 @@ public class ProjectService {
     }
 
     public Project get(Long id) {
-        return restTemplate.getForObject(backendURL+"projects/"+id, Project.class);
+        return restTemplate.getForObject(backendURL + "projects/" + id, Project.class);
     }
 
-    public Page<Project> getAll(int page, int size, String sort) {
-        return exchangeAsPAge(backendURL+"projects"+getPageQuery(page, size, sort), new ParameterizedTypeReference<Page<Project>>() {});
+    public Page<Project> getAll(Integer page, Integer size, String sort, String projectCode) {
+        return exchangeAsPAge(backendURL + "projects" + getPageQuery(page, size, sort, projectCode), new ParameterizedTypeReference<Page<Project>>() {
+        });
     }
 
     public Project create(Project project) {
-        return restTemplate.postForObject(backendURL+"projects/", project, Project.class);
+        return restTemplate.postForObject(backendURL + "projects/", project, Project.class);
     }
 
     public void update(Project project, Long id) {
-        restTemplate.put(backendURL+"projects/"+id, project);
+        restTemplate.put(backendURL + "projects/" + id, project);
     }
 
     public void delete(Long id) {
-        restTemplate.delete(backendURL+"projects/"+id);
+        restTemplate.delete(backendURL + "projects/" + id);
     }
 
-    private String getPageQuery(int page, int size, String sort){
-        return "?page="+page+"&size="+size+"&sort="+sort;
-    }
+    private String getPageQuery(Integer page, Integer size, String sort, String projectCode) {
+        String params;
+        if (page == null && size == null && sort == null) {
+            if (projectCode == null) {
+                params = "";
+            } else {
+                params = "?projectCode" + projectCode;
+            }
+        }
+            else{params="?page=" + page + "&size=" + size + "&sort=" + sort;}
+            return params;
+        }
+
 
     public <T> Page<T> exchangeAsPAge(String uri, ParameterizedTypeReference<Page<T>> responseType) {
         return restTemplate.exchange(uri, HttpMethod.GET, null, responseType).getBody();
