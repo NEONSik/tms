@@ -1,8 +1,14 @@
 <app-navbar></app-navbar>
-<div class="wrapper">
-  <div class="leftside">
-    <span>Project Manager: 1</span>
-    <span>Project Code: 2</span>
-  </div>
-<app-task-table></app-task-table>
+<div class="projectPage">
+  <div>
+    <mat-list>
+      <mat-list-item>Project Manager:  {{projectPage.projectManager.email}}</mat-list-item>
+      <mat-divider ></mat-divider>
+      <mat-list-item>Project Code:  {{projectPage.projectCode}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Summary:  {{projectPage.summary}}</mat-list-item>
+      <mat-divider ></mat-divider>
+    </mat-list>
+</div>
+      <button mat-raised-button color="primary" (click)="homePage()">home</button>
 </div>

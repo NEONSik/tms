@@ -39,7 +39,7 @@ const appRoutes: Routes = [
   {path: 'user', component: UserPageComponent},
   {path: 'projects', component: ProjectTableComponent},
   {path: 'taskpage', component: TaskPageComponent},
-  {path: 'projectpage', component: ProjectPageComponent},
+  {path: 'projectpage/:id', component: ProjectPageComponent},
   {path: 'home', component: HomePageComponent}
 ];
 

@@ -3,9 +3,9 @@ import {CommonModule} from '@angular/common';
 import {ProjectService} from '../../services/project.service';
 import {NewProjectComponent} from './components/new-project/new-project.component';
 import {
-  MatButtonModule, MatExpansionModule,
+  MatButtonModule, MatDividerModule, MatExpansionModule,
   MatFormFieldModule, MatIconModule,
-  MatInputModule, MatPaginatorModule,
+  MatInputModule, MatListModule, MatPaginatorModule,
   MatRippleModule,
   MatSelectModule, MatSidenavModule,
   MatSliderModule, MatSortModule,
@@ -40,7 +40,10 @@ import {MatAutocompleteModule} from '@angular/material';
     NavBarModule,
     TaskModule,
     RouterModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [ProjectService],
   exports: [NewProjectComponent, ProjectTableComponent],
