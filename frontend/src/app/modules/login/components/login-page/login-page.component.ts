@@ -29,9 +29,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   getErrorMessage() {
-    // return this.email.hasError('required') ? 'You must enter a value' :
-    //   this.email.hasError('email') ? 'Not a valid email' :
-    //     ''; переделать не делать тернарный оператор в тернарном операторе
   }
 
   ngOnInit(): void {
