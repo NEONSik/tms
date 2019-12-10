@@ -18,11 +18,9 @@ import {RouterModule} from '@angular/router';
   imports: [
     CommonModule,
     MatTabsModule,
-    UserModule,
     MatFormFieldModule,
     FormsModule,
     MatDialogModule,
-    TaskModule,
     RouterModule,
     MatButtonModule,
     MatToolbarModule

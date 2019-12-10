@@ -6,23 +6,26 @@ import {AppModule} from '../../app.module';
 import {NewTaskComponent} from './components/new-task/new-task.component';
 import {
   MatAutocompleteModule,
-  MatButtonModule,
+  MatButtonModule, MatDividerModule,
   MatFormFieldModule,
-  MatInputModule, MatNativeDateModule,
+  MatInputModule, MatListModule, MatNativeDateModule,
   MatSelectModule, MatSortModule,
   MatTable,
   MatTableDataSource,
   MatTableModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { TaskTableComponent } from './components/task-table/task-table.component';
+import {TaskTableComponent} from './components/task-table/task-table.component';
 import {MatPaginatorModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {NavBarModule} from '../header/nav-bar.module';
+import {RouterModule} from '@angular/router';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
 
 
 @NgModule({
-  declarations: [TaskPageComponent, NewTaskComponent, TaskTableComponent],
+  declarations: [TaskPageComponent, NewTaskComponent, TaskTableComponent, EditTaskComponent],
   imports: [
     CommonModule,
     MatInputModule,
@@ -37,9 +40,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NavBarModule,
+    MatListModule,
+    MatDividerModule,
+    RouterModule
   ],
-  exports: [NewTaskComponent, TaskTableComponent],
+  exports: [NewTaskComponent, TaskTableComponent, TaskPageComponent],
   providers: [TaskService],
   entryComponents: [NewTaskComponent]
 })

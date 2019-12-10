@@ -13,7 +13,7 @@ import {Page} from '../../../../models/page';
 })
 export class TaskTableComponent implements AfterViewInit {
   public tasks: Task[];
-  public displayedColumns: string[] = ['createDate', 'dueDate', 'priority', 'status', 'ticketCode', 'updateDate', 'assignee', 'project', 'reporter', 'delete'];
+  public displayedColumns: string[] = [ 'priority', 'status', 'ticketCode','assignee', 'project', 'reporter', 'delete'];
   public dataSource: MatTableDataSource<Task>;
   public totalSize = 0;
   public pageSize = 10;

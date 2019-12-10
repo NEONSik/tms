@@ -56,6 +56,8 @@ public class Task {
 
     @PreUpdate
     public void onUpdate() {
+        long time = System.currentTimeMillis();
         updateDate = System.currentTimeMillis();
+        ticketCode = String.valueOf(time);
     }
 }

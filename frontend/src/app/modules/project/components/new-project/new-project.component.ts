@@ -24,7 +24,7 @@ export class NewProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getProjectManager(`Project Manager`).subscribe((data: Page<User>) => {
+    this.userService.getUserByRole(`Project Manager`).subscribe((data: Page<User>) => {
       this.managersOptions = data.content;
     });
     this.newProjectForm = this.formbuilder.group({

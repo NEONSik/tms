@@ -6,7 +6,7 @@
 
   <ng-container matColumnDef="email">
     <mat-header-cell *matHeaderCellDef  mat-sort-header> Username:</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    <mat-cell *matCellDef="let element"> <a [routerLink]="['/userpage', element.id]">{{ element.email}}</a> </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="role">

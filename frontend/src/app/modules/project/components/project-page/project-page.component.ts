@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {of, Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Project} from '../../model/project';
 import {ProjectService} from '../../../../services/project.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../../user/model/user';
+import {Page} from '../../../../models/page';
+import {UserService} from '../../../../services/user.service';
 
 
 @Component({
@@ -12,9 +16,12 @@ import {ProjectService} from '../../../../services/project.service';
 })
 export class ProjectPageComponent implements OnInit {
   private projectId: number;
+  editProjectForm: FormGroup;
   projectPage: Project = new Project();
+  managersOptions: User[];
+  managersFilteredOptions;
 
-  constructor(private router: Router, private activateRoute: ActivatedRoute, private projectService: ProjectService) {
+  constructor(private  userService: UserService, private formbuilder: FormBuilder, private router: Router, private activateRoute: ActivatedRoute, private projectService: ProjectService) {
   }
 
   ngOnInit() {
@@ -26,5 +33,9 @@ export class ProjectPageComponent implements OnInit {
 
   homePage(): void {
     this.router.navigate(['home']);
+  }
+
+  edit() {
+    this.router.navigate(['editproject', this.projectId]);
   }
 }

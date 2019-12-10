@@ -21,11 +21,12 @@ import {TaskModule} from '../task/task.module';
 import {RouterModule} from '@angular/router';
 
 import {MatAutocompleteModule} from '@angular/material';
+import { EditProjectComponent } from './components/edit-project/edit-project.component';
 
 
 
 @NgModule({
-  declarations: [NewProjectComponent, ProjectTableComponent, ProjectPageComponent],
+  declarations: [NewProjectComponent, ProjectTableComponent, ProjectPageComponent, EditProjectComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -43,7 +44,8 @@ import {MatAutocompleteModule} from '@angular/material';
     MatAutocompleteModule,
     MatTabsModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatIconModule
   ],
   providers: [ProjectService],
   exports: [NewProjectComponent, ProjectTableComponent],

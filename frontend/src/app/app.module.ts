@@ -32,15 +32,22 @@ import {ProjectModule} from './modules/project/project.module';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {HomePageModule} from './modules/homepage/home-page.module';
 import {LoginModule} from './modules/login/login.module';
+import {EditProjectComponent} from './modules/project/components/edit-project/edit-project.component';
+import {EditTaskComponent} from './modules/task/components/edit-task/edit-task.component';
+import {EditUserComponent} from './modules/user/components/edit-user/edit-user.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: LoginPageComponent},
   {path: 'user', component: UserPageComponent},
   {path: 'projects', component: ProjectTableComponent},
-  {path: 'taskpage', component: TaskPageComponent},
+  {path: 'taskpage/:id', component: TaskPageComponent},
   {path: 'projectpage/:id', component: ProjectPageComponent},
-  {path: 'home', component: HomePageComponent}
+  {path: 'home', component: HomePageComponent},
+  {path: 'userpage/:id', component: UserPageComponent},
+  {path: 'edittask/:id', component: EditTaskComponent},
+  {path: 'edituser/:id', component: EditUserComponent},
+  {path: 'editproject/:id', component: EditProjectComponent}
 ];
 
 @NgModule({

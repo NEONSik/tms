@@ -1,14 +1,4 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"(matSortChange)="updateData()" matSort>
-  <ng-container matColumnDef="createDate">
-    <mat-header-cell *matHeaderCellDef> Create Date: </mat-header-cell>
-    <mat-cell *matCellDef="let element" > {{element.createDate|date}} </mat-cell>
-  </ng-container>
-
-
-  <ng-container matColumnDef="dueDate">
-    <mat-header-cell *matHeaderCellDef> Due Date: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.dueDate|date}} </mat-cell>
-  </ng-container>
 
   <ng-container matColumnDef="priority">
     <mat-header-cell *matHeaderCellDef> Priority: </mat-header-cell>
@@ -22,13 +12,9 @@
 
   <ng-container matColumnDef="ticketCode">
     <mat-header-cell *matHeaderCellDef> Ticket Code: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.ticketCode}} </mat-cell>
+    <mat-cell *matCellDef="let element"><a [routerLink]="['/taskpage', element.id]">{{ element.ticketCode}}</a> </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="updateDate">
-    <mat-header-cell *matHeaderCellDef> Update Date: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.updateDate|date}} </mat-cell>
-  </ng-container>
 
   <ng-container matColumnDef="assignee">
     <mat-header-cell *matHeaderCellDef> Assigne: </mat-header-cell>

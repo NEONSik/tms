@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+<div class="userPage">
+  <div>
+    <mat-list>
+      <h4 class="font">Details:</h4>
+      <mat-list-item>Email:  {{userPage.email}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Role: {{userPage.role}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>#id:  {{userPage.id}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Project:  {{userPage.project}}</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+  <button mat-raised-button color="primary" (click)="homePage()">Home</button>
+  <button mat-raised-button color="accent" (click)="updateUser()">Edit</button>
+</div>
+

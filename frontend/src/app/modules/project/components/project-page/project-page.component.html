@@ -2,13 +2,22 @@
 <div class="projectPage">
   <div>
     <mat-list>
-      <mat-list-item>Project Manager:  {{projectPage.projectManager.email}}</mat-list-item>
-      <mat-divider ></mat-divider>
-      <mat-list-item>Project Code:  {{projectPage.projectCode}}</mat-list-item>
+      <div class="form-group">
+        <mat-list-item>Project Manager:  {{projectPage.projectManager.email}}
+        </mat-list-item>
+      </div>
       <mat-divider></mat-divider>
-      <mat-list-item>Summary:  {{projectPage.summary}}</mat-list-item>
-      <mat-divider ></mat-divider>
+      <div class="form-group">
+        <mat-list-item>Project Code:  {{projectPage.projectCode}}</mat-list-item>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="form-group">
+        <mat-list-item>Summary:  {{projectPage.summary}}</mat-list-item>
+      </div>
+      <mat-divider></mat-divider>
     </mat-list>
-</div>
-      <button mat-raised-button color="primary" (click)="homePage()">home</button>
+  </div>
+  <button mat-raised-button color="primary" (click)="homePage()">Home</button>
+  <button mat-raised-button color="accent" (click)="edit()">Edit
+  </button>
 </div>

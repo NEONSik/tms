@@ -24,7 +24,7 @@ export class UserService {
     return this.http.get<Page<User>>(`api/v1/users?page=${page}&size=${size}&sort=${sort}`);
   }
 
-  getProjectManager(role: string): Observable<Page<User>> {
+  getUserByRole(role: string): Observable<Page<User>> {
     return this.http.get<Page<User>>(`api/v1/users?role=${role}`);
   }
 

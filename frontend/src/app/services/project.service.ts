@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Project} from '../modules/project/model/project';
 import {Observable} from 'rxjs';
 import {Page} from '../models/page';
+import {User} from '../modules/user/model/user';
 
 
 @Injectable({
@@ -15,6 +16,10 @@ export class ProjectService {
 
   getProjectsTable(page: number, size: number, sort: string): Observable<Page<Project>> {
     return this.http.get<Page<Project>>(`api/v1/projects?page=${page}&size=${size}&sort=${sort}`);
+  }
+
+  uppdateProject(id: number, project: Project) {
+    return this.http.put(`api/v1/projects/${id}`, project);
   }
 
   getProject(id: number): Observable<Project> {

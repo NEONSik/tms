@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Task} from '../modules/task/model/task';
 import {Page} from '../models/page';
+import {Project} from '../modules/project/model/project';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,11 @@ export class TaskService {
 
   constructor(private http: HttpClient) {
   }
+
+  uppdateTask(id: number, task: Task) {
+    return this.http.put(`api/v1/tasks/${id}`, task);
+  }
+
 
   createTask(task): Observable<Task> {
     return this.http.post<Task>(`api/v1/tasks`, task);
