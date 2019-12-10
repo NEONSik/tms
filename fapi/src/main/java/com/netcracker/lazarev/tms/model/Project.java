@@ -2,14 +2,14 @@ package com.netcracker.lazarev.tms.model;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class Project {
     private Long id;
-    @NotBlank
+    @NotNull
     private String projectCode;
-    @NotBlank
+    @NotNull
     private String summary;
     private User projectManager;
 }
