@@ -9,8 +9,14 @@
       </div>
       <div class="form-group">
         <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name">
+          <mat-error *ngIf="newUserForm.hasError('whitespace')">required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
           <input matInput placeholder="Password" formControlName="password">
-          <mat-error *ngIf="newUserForm.controls.password.invalid">required</mat-error>
+          <mat-error *ngIf="newUserForm.hasError('whitespace')">required</mat-error>
         </mat-form-field>
       </div>
       <div class="form-group">

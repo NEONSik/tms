@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../model/user';
 import {MatDialogRef, MatTable} from '@angular/material';
 import {UserService} from '../../../../services/user.service';
@@ -14,15 +14,23 @@ export class NewUserComponent implements OnInit {
   newUserForm: FormGroup;
   newUser: User = new User();
   @ViewChild(MatTable, {static: false}) table: MatTable<User>;
+
   constructor(public diologRef: MatDialogRef<NewUserComponent>, private userservice: UserService, private formBulder: FormBuilder) {
   }
 
   ngOnInit() {
     this.newUserForm = this.formBulder.group({
       email: ['', [Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')]],
-      password: ['', [Validators.minLength(5)]],
+      name: ['', [Validators.required, this.noWhitespaceValidator]],
+      password: ['', [Validators.required, this.noWhitespaceValidator]],
       role: ['', [Validators.required]]
     });
+  }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : {'whitespace': true};
   }
 
   close() {
@@ -31,6 +39,7 @@ export class NewUserComponent implements OnInit {
 
   send() {
     this.newUser.email = this.newUserForm.controls.email.value;
+    this.newUser.name = this.newUserForm.controls.name.value;
     this.newUser.password = this.newUserForm.controls.password.value;
     this.newUser.role = this.newUserForm.controls.role.value;
     this.userservice.createUser(this.newUser).subscribe(() => {

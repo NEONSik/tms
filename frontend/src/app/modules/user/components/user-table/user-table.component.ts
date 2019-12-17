@@ -12,7 +12,7 @@ import {Page} from '../../../../models/page';
 })
 export class UserTableComponent implements AfterViewInit {
   public users: User[];
-  public displayedColumns: string[] = ['email', 'role', 'delete'];
+  public displayedColumns: string[] = ['email', 'name', 'role', 'delete'];
   public dataSource: MatTableDataSource<User>;
   public totalSize = 0;
   public pageSize = 10;
@@ -22,7 +22,6 @@ export class UserTableComponent implements AfterViewInit {
 
   constructor(private userService: UserService) {
   }
-
   ngAfterViewInit(): void {
     this.sort.active = 'email';
     this.sort.direction = 'asc';
@@ -59,9 +58,9 @@ export class UserTableComponent implements AfterViewInit {
         this.totalSize = data.totalElements;
       });
   }
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+
+
+
   public deleteUser(id: number) {
     this.userService.deleteUser(id).subscribe(() => {
       this.updateData();

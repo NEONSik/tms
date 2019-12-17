@@ -1,12 +1,13 @@
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Filter" >
-</mat-form-field>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" (matSortChange)="updateData()" matSort>
 
   <ng-container matColumnDef="email">
     <mat-header-cell *matHeaderCellDef  mat-sort-header> Username:</mat-header-cell>
-    <mat-cell *matCellDef="let element"> <a [routerLink]="['/userpage', element.id]">{{ element.email}}</a> </mat-cell>
+    <mat-cell *matCellDef="let element"> <a class="userClick" [routerLink]="['/userpage', element.id]">{{ element.email}}</a> </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Name:</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="role">

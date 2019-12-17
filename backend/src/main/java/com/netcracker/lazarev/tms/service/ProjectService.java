@@ -1,6 +1,6 @@
 package com.netcracker.lazarev.tms.service;
 
-import com.netcracker.lazarev.tms.dto.ProjectDto;
+
 import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
