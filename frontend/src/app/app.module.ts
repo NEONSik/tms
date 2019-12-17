@@ -47,7 +47,8 @@ const appRoutes: Routes = [
   {path: 'userpage/:id', component: UserPageComponent},
   {path: 'edittask/:id', component: EditTaskComponent},
   {path: 'edituser/:id', component: EditUserComponent},
-  {path: 'editproject/:id', component: EditProjectComponent}
+  {path: 'editproject/:id', component: EditProjectComponent},
+
 ];
 
 @NgModule({
@@ -65,8 +66,7 @@ const appRoutes: Routes = [
     ProjectModule,
     LoginModule
   ],
-  exports: [
-  ],
+  exports: [],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,14 +1,21 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS projects CASCADE;
 DROP TABLE IF EXISTS tasks CASCADE;
+DROP TABLE IF EXISTS comments CASCADE;
 
 DROP SEQUENCE IF EXISTS users_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS tasks_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS projects_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS comments_id_seq CASCADE;
 
 CREATE SEQUENCE users_id_seq;
 
 ALTER SEQUENCE users_id_seq
+    OWNER TO springuser;
+
+CREATE SEQUENCE comments_id_seq;
+
+ALTER SEQUENCE comments_id_seq
     OWNER TO springuser;
 
 CREATE SEQUENCE tasks_id_seq;
@@ -24,6 +31,7 @@ ALTER SEQUENCE projects_id_seq
 CREATE TABLE users
 (
     id       bigint DEFAULT nextval('users_id_seq'::regclass),
+    name  character varying(255),
     email    character varying(255),
     password character varying(255),
     role     character varying(255),
@@ -33,6 +41,22 @@ CREATE TABLE users
         OIDS = FALSE
     )
     TABLESPACE pg_default;
+
+
+CREATE TABLE comments
+(
+    id       bigint DEFAULT nextval('comments_id_seq'::regclass),
+    content    character varying(255),
+    user_id bigint,
+    task_id     bigint,
+    CONSTRAINT comments_pkey PRIMARY KEY (id)
+)
+    WITH (
+        OIDS = FALSE
+    )
+    TABLESPACE pg_default;
+
+
 
 CREATE TABLE projects
 (
@@ -75,6 +99,13 @@ ALTER TABLE projects
         REFERENCES users (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE SET NULL;
+
+ALTER TABLE comments
+    ADD CONSTRAINT fk_task_id FOREIGN KEY (task_id)
+        REFERENCES tasks (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL;
+
 
 ALTER TABLE tasks
     ADD CONSTRAINT fk_reporter_id FOREIGN KEY (reporter_id)
