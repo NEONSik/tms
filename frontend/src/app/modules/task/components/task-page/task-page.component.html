@@ -23,11 +23,43 @@
       <mat-divider></mat-divider>
       <mat-list-item>Due date:  {{taskPage.dueDate| date}}</mat-list-item>
       <mat-divider></mat-divider>
+      <form [formGroup]="commentForm">
+        <mat-form-field class="commentForm">
+          <textarea matInput placeholder="Comment" formControlName="content"></textarea>
+
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addComment()">Create</button>
+      </form>
     </mat-list>
   </div>
-  <button mat-raised-button color="primary" (click)="homePage()">Home</button>
-  <button mat-raised-button color="accent" (click)="edit()">Edit</button>
+  <button mat-raised-button color="primary" (click)="navigateToHomePage()">Home</button>
+  <button mat-raised-button color="accent" (click)="editTask()">Edit</button>
 </div>
+<!--<button mat-raised-button color="warn"(click)="getAllComments()">Show comments</button>-->
+<!--<div class="col-sm-8">-->
+<!--  <div class="panel panel-white post panel-shadow" *ngFor="let comment of comments">-->
+<!--    <div class="post-heading">-->
+<!--      <div class="pull-left meta">-->
+<!--        <div class="title h5">-->
+<!--          <a href="#"><b>{{comment.user.name}}</b></a>-->
+<!--          made a post.-->
+<!--        </div>-->
+<!--        <h6 class="text-muted time">1 minute ago</h6>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="post-description">-->
+<!--      <p>{{comment.content}}</p>-->
+<!--      <div class="stats">-->
+<!--        <a href="#" class="btn btn-default stat-item">-->
+<!--          <i class="fa fa-thumbs-up icon"></i>2-->
+<!--        </a>-->
+<!--        <a href="#" class="btn btn-default stat-item">-->
+<!--          <i class="fa fa-thumbs-down icon"></i>12-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 

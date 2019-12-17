@@ -12,7 +12,7 @@
 
   <ng-container matColumnDef="ticketCode">
     <mat-header-cell *matHeaderCellDef> Ticket Code: </mat-header-cell>
-    <mat-cell *matCellDef="let element"><a [routerLink]="['/taskpage', element.id]">{{ element.ticketCode}}</a> </mat-cell>
+    <mat-cell *matCellDef="let element"><a class="taskClick" [routerLink]="['/taskpage', element.id]">{{ element.ticketCode}}</a> </mat-cell>
   </ng-container>
 
 
