@@ -61,7 +61,7 @@ export class NewTaskComponent implements OnInit {
 
   filterUser(value: string) {
     const filterValue = value.toLowerCase();
-    return of(this.usersOptions.filter((option) => option.email.toLowerCase().indexOf(filterValue) === 0).map(user => user.email));
+    return of(this.usersOptions.filter((option) => option.name.toLowerCase().indexOf(filterValue) === 0).map(user => user.name));
   }
 
   filterProject(value: string) {
@@ -78,7 +78,7 @@ export class NewTaskComponent implements OnInit {
     this.newTask.dueDate = Date.parse(this.newTaskForm.controls.dueDate.value);
     this.newTask.estimation = parseFloat(this.newTaskForm.controls.estimation.value);
     this.newTask.assignee = new User();
-    this.newTask.assignee.id = this.usersOptions.find(user => user.email === this.newTaskForm.controls.assignee.value).id;
+    this.newTask.assignee.id = this.usersOptions.find(user => user.name === this.newTaskForm.controls.assignee.value).id;
     this.newTask.reporter = new User();
     this.newTask.reporter.id = 1;
     this.taskService.createTask(this.newTask).subscribe(() => {

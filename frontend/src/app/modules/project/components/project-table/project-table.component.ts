@@ -15,7 +15,7 @@ import {Page} from '../../../../models/page';
 })
 export class ProjectTableComponent implements AfterViewInit {
   public projects: Project[];
-  public displayedColumns: string[] = ['id', 'projectCode', 'summary', 'projectManager', 'delete'];
+  public displayedColumns: string[] = ['projectCode', 'summary', 'projectManager', 'delete'];
   public dataSource: MatTableDataSource<Project>;
   public totalSize = 0;
   public pageSize = 10;
@@ -27,7 +27,7 @@ export class ProjectTableComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.sort.active = 'id';
+    this.sort.active = 'projectCode';
     this.sort.direction = 'asc';
     this.getData();
   }
@@ -51,7 +51,7 @@ export class ProjectTableComponent implements AfterViewInit {
 
   private updateData() {
     if (this.sort.active === '' || this.sort.direction === '') {
-      this.sort.active = 'id';
+      this.sort.active = 'projectCode';
       this.sort.direction = 'asc';
     }
     this.projectService.getProjectsTable(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)

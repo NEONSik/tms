@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Project} from '../../../project/model/project';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {TaskService} from '../../../../services/task.service';
@@ -13,7 +13,7 @@ import {Page} from '../../../../models/page';
 })
 export class TaskTableComponent implements AfterViewInit {
   public tasks: Task[];
-  public displayedColumns: string[] = [ 'priority', 'status', 'ticketCode','assignee', 'project', 'reporter', 'delete'];
+  public displayedColumns: string[] = ['priority', 'status', 'ticketCode', 'assignee', 'project', 'reporter', 'delete'];
   public dataSource: MatTableDataSource<Task>;
   public totalSize = 0;
   public pageSize = 10;
@@ -30,6 +30,7 @@ export class TaskTableComponent implements AfterViewInit {
     this.sort.direction = 'asc';
     this.getData();
   }
+
   public handlePage(e: any) {
     this.currentPage = e.pageIndex;
     this.pageSize = e.pageSize;
@@ -60,6 +61,7 @@ export class TaskTableComponent implements AfterViewInit {
         this.totalSize = data.totalElements;
       });
   }
+
   public deleteTask(id: number) {
     this.taskService.deleteTask(id).subscribe(() => {
       this.updateData();

@@ -11,5 +11,6 @@ public class Project {
     private String projectCode;
     @NotNull
     private String summary;
+    @NotNull
     private User projectManager;
 }

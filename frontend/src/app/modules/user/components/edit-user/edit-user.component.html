@@ -8,7 +8,7 @@
   <div class="form-group">
     <mat-form-field>
       <input matInput type="text" formControlName="password" placeholder="Password" />
-      <mat-error *ngIf="editUserForm.controls.password.invalid">required</mat-error>
+      <mat-error *ngIf="editUserForm.hasError('whitespace')">required</mat-error>
     </mat-form-field>
   </div>
   <div class="form-group">

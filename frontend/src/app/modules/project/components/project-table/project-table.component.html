@@ -3,14 +3,9 @@
 
 
 
-  <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> #id </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-  </ng-container>
-
   <ng-container matColumnDef="projectCode">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Project code: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> <a [routerLink]="['/projectpage', element.id]">{{ element.projectCode}}</a>  </mat-cell>
+    <mat-cell *matCellDef="let element"> <a class="projectClick" [routerLink]="['/projectpage', element.id]">{{ element.projectCode}}</a>  </mat-cell>
   </ng-container>
 
 

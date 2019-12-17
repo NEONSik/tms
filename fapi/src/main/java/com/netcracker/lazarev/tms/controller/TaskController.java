@@ -20,8 +20,8 @@ public class TaskController {
 
     @GetMapping
     public Page<Task> getAll(
-            @RequestParam(value="page") int page,
-            @RequestParam(value="size") int size,
+            @RequestParam(value="page") Integer page,
+            @RequestParam(value="size") Integer size,
             @RequestParam(value="sort") String sort) {
         return taskService.getAll(page,size,sort);
     }
@@ -37,13 +37,13 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    private void create(@RequestBody Task task,
+    private void update(@RequestBody Task task,
                         @PathVariable(name = "id") Long id) {
         taskService.update(task, id);
     }
 
     @DeleteMapping("/{id}")
-    private void create(@PathVariable(name = "id") Long id) {
+    private void delete(@PathVariable(name = "id") Long id) {
         taskService.delete(id);
     }
 }

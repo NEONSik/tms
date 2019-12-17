@@ -38,13 +38,13 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    private void create(@RequestBody User user,
+    private void update(@Valid @RequestBody User user,
                         @PathVariable(name = "id") Long id) {
         userService.update(user, id);
     }
 
     @DeleteMapping("/{id}")
-    private void create(@PathVariable(name = "id") Long id) {
+    private void delete(@PathVariable(name = "id") Long id) {
         userService.delete(id);
     }
 }

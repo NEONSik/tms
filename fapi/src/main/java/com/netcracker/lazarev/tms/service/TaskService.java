@@ -24,7 +24,7 @@ public class TaskService {
         return restTemplate.getForObject(backendURL+"tasks/"+id, Task.class);
     }
 
-    public Page<Task> getAll(int page,int size, String sort) {
+    public Page<Task> getAll(Integer page,Integer size, String sort) {
         return exchangeAsPage(backendURL+"tasks"+getPageQuery(page,size,sort),new ParameterizedTypeReference<Page<Task>>(){});
     }
 
@@ -39,7 +39,7 @@ public class TaskService {
     public void delete(Long id) {
         restTemplate.delete(backendURL+"tasks/"+id);
     }
-    private String getPageQuery(int page, int size, String sort){
+    private String getPageQuery(Integer page, Integer size, String sort){
         return "?page="+page+"&size="+size+"&sort="+sort;
     }
     public <T> Page<T> exchangeAsPage(String uri,ParameterizedTypeReference<Page<T>> responseType){
