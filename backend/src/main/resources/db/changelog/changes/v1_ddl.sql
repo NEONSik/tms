@@ -31,9 +31,9 @@ ALTER SEQUENCE projects_id_seq
 CREATE TABLE users
 (
     id       bigint DEFAULT nextval('users_id_seq'::regclass),
-    name  character varying(255),
-    email    character varying(255),
-    password character varying(255),
+    name  character varying(255) ,
+    email    character varying(255) UNIQUE,
+    password character varying(255) ,
     role     character varying(255),
     CONSTRAINT users_pkey PRIMARY KEY (id)
 )
@@ -61,7 +61,7 @@ CREATE TABLE comments
 CREATE TABLE projects
 (
     id                 bigint DEFAULT nextval('projects_id_seq'::regclass),
-    project_code       character varying(255),
+    project_code       character varying(255) UNIQUE,
     summary            character varying(255),
     project_manager_id bigint,
     CONSTRAINT projects_pkey PRIMARY KEY (id)

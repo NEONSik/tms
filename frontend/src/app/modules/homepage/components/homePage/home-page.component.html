@@ -1,6 +1,28 @@
 <app-navbar></app-navbar>
-<mat-tab-group  color="accent" backgroundColor="primary">
-  <mat-tab label="Projects"><app-project-table></app-project-table></mat-tab>
-  <mat-tab label="Users"><app-user-table></app-user-table></mat-tab>
-  <mat-tab label="Tasks"><app-task-table></app-task-table></mat-tab>
+<mat-tab-group color="accent" backgroundColor="primary">
+  <div *ngIf="roleInToken=='Project Manager'">
+    <mat-tab #tabProjects label="Projects">
+      <app-project-table *ngIf="tabProjects.isActive"></app-project-table>
+    </mat-tab>
+  </div>
+  <div *ngIf="roleInToken=='Admin'">
+    <mat-tab label="Users">
+        <app-user-table></app-user-table>
+    </mat-tab>
+  </div>
+  <div *ngIf="roleInToken=='Project Manager'">
+    <mat-tab #tabTasks label="Tasks">
+      <app-task-table *ngIf="tabTasks.isActive" ></app-task-table>
+    </mat-tab>
+  </div>
+  <div *ngIf="roleInToken=='Tester'">
+    <mat-tab label="Tasks">
+      <app-task-table></app-task-table>
+    </mat-tab>
+  </div>
+  <div *ngIf="roleInToken=='Developer'">
+    <mat-tab label="Tasks">
+      <app-task-table></app-task-table>
+    </mat-tab>
+  </div>
 </mat-tab-group>

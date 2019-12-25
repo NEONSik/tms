@@ -6,10 +6,10 @@ import {AppModule} from '../../app.module';
 import {NewTaskComponent} from './components/new-task/new-task.component';
 import {
   MatAutocompleteModule,
-  MatButtonModule, MatDividerModule,
+  MatButtonModule, MatDialogModule, MatDividerModule,
   MatFormFieldModule,
   MatInputModule, MatListModule, MatNativeDateModule,
-  MatSelectModule, MatSortModule,
+  MatSelectModule, MatSnackBarModule, MatSortModule,
   MatTable,
   MatTableDataSource,
   MatTableModule
@@ -21,7 +21,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {NavBarModule} from '../header/nav-bar.module';
 import {RouterModule} from '@angular/router';
-import { EditTaskComponent } from './components/edit-task/edit-task.component';
+import {EditTaskComponent} from './components/edit-task/edit-task.component';
 
 
 @NgModule({
@@ -44,11 +44,13 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
     NavBarModule,
     MatListModule,
     MatDividerModule,
-    RouterModule
+    RouterModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
-  exports: [NewTaskComponent, TaskTableComponent, TaskPageComponent],
+  exports: [NewTaskComponent, TaskTableComponent, TaskPageComponent, EditTaskComponent],
   providers: [TaskService],
-  entryComponents: [NewTaskComponent]
+  entryComponents: [NewTaskComponent, EditTaskComponent]
 })
 export class TaskModule {
 }

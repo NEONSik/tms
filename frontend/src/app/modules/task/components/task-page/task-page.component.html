@@ -2,19 +2,22 @@
 <div class="taskPage">
   <div>
     <mat-list>
+      <div class="taskDetails">
       <h4 class="font">Details:</h4>
+          <button  mat-raised-button class="editButton" color="accent" (click)="editTask()">Edit Task</button>
+      </div>
       <mat-list-item>Description:  {{taskPage.description}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Ticket-code  {{taskPage.ticketCode}}</mat-list-item>
+      <mat-list-item>Ticket-code:  {{taskPage.ticketCode}}</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>Priority:  {{taskPage.priority}}</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>Status:  {{taskPage.status}}</mat-list-item>
       <mat-divider></mat-divider>
       <h4 class="font">People:</h4>
-      <mat-list-item>Reproter:  {{taskPage.reporter.email}}</mat-list-item>
+      <mat-list-item> Reporter:  {{reporterOfProject.name}}</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Assigne  {{taskPage.assignee.email}}</mat-list-item>
+      <mat-list-item> Assignee:  {{assigneeOfProject.name}}</mat-list-item>
       <mat-divider></mat-divider>
       <h4 class="font">Dates:</h4>
       <mat-list-item>Created:  {{taskPage.createDate| date}}</mat-list-item>
@@ -23,43 +26,33 @@
       <mat-divider></mat-divider>
       <mat-list-item>Due date:  {{taskPage.dueDate| date}}</mat-list-item>
       <mat-divider></mat-divider>
-      <form [formGroup]="commentForm">
-        <mat-form-field class="commentForm">
-          <textarea matInput placeholder="Comment" formControlName="content"></textarea>
-
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="addComment()">Create</button>
-      </form>
     </mat-list>
   </div>
-  <button mat-raised-button color="primary" (click)="navigateToHomePage()">Home</button>
-  <button mat-raised-button color="accent" (click)="editTask()">Edit</button>
+  <form [formGroup]="commentForm">
+    <mat-form-field class="commentForm">
+      <textarea matInput placeholder="Comment" formControlName="content"></textarea>
+
+    </mat-form-field>
+    <button mat-raised-button class="commentButtons" color="primary" (click)="addComment()">Comment</button>
+    <button mat-raised-button class="commentButtons" color="primary" (click)="navigateToHomePage()">Home</button>
+  </form>
 </div>
-<!--<button mat-raised-button color="warn"(click)="getAllComments()">Show comments</button>-->
-<!--<div class="col-sm-8">-->
-<!--  <div class="panel panel-white post panel-shadow" *ngFor="let comment of comments">-->
-<!--    <div class="post-heading">-->
-<!--      <div class="pull-left meta">-->
-<!--        <div class="title h5">-->
-<!--          <a href="#"><b>{{comment.user.name}}</b></a>-->
-<!--          made a post.-->
-<!--        </div>-->
-<!--        <h6 class="text-muted time">1 minute ago</h6>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="post-description">-->
-<!--      <p>{{comment.content}}</p>-->
-<!--      <div class="stats">-->
-<!--        <a href="#" class="btn btn-default stat-item">-->
-<!--          <i class="fa fa-thumbs-up icon"></i>2-->
-<!--        </a>-->
-<!--        <a href="#" class="btn btn-default stat-item">-->
-<!--          <i class="fa fa-thumbs-down icon"></i>12-->
-<!--        </a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="commentDiplay">
+  <div *ngFor="let comment of comments">
+    <mat-divider></mat-divider>
+    <div>
+        <div class="content">
+          <a [routerLink]="['/userpage',comment.user.id]"><b class="name">{{comment.user.name}}</b></a>
+          made a post.
+          <button mat-raised-button class="deleteButton" color="primary" (click)="deleteComment(comment.id)">delete</button>
+        </div>
+    </div>
+    <div>
+      <p class="comments">{{comment.content}}</p>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+</div>
 
 
 

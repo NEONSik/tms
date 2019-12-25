@@ -7,6 +7,7 @@ import {User} from '../../../user/model/user';
 import {UserService} from '../../../../services/user.service';
 import {of} from 'rxjs';
 import {Page} from '../../../../models/page';
+import {TransitEventsService} from '../../../../services/transit-events.service';
 
 @Component({
   selector: 'app-new-project',
@@ -20,7 +21,7 @@ export class NewProjectComponent implements OnInit {
   managersFilteredOptions;
 
   constructor(private projectservice: ProjectService, public dialogRef: MatDialogRef<NewProjectComponent>,
-              private userService: UserService, private  formbuilder: FormBuilder) {
+              private userService: UserService, private  formbuilder: FormBuilder, private transitEventsService: TransitEventsService) {
   }
 
   ngOnInit() {
@@ -57,6 +58,7 @@ export class NewProjectComponent implements OnInit {
     this.newProject.projectManager.id = this.managersOptions
                                             .find(manager => manager.email === this.newProjectForm.controls.projectManager.value).id;
     this.projectservice.createProject(this.newProject).subscribe(() => {
+      this.transitEventsService.myMethod(true);
       this.dialogRef.close();
     });
   }

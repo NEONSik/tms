@@ -2,7 +2,15 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UserService} from '../../services/user.service';
 import {UserTableComponent} from './components/user-table/user-table.component';
-import {MatButtonModule, MatDialogModule, MatDividerModule, MatListModule, MatSortModule, MatTableModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatIconModule,
+  MatListModule, MatSnackBarModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material';
 import {AppModule} from '../../app.module';
 import {NewUserComponent} from './components/new-user/new-user.component';
 import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
@@ -33,9 +41,11 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     NavBarModule,
     MatDividerModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
-  exports: [NewUserComponent, UserTableComponent, UserPageComponent],
+  exports: [NewUserComponent, UserTableComponent, UserPageComponent,EditUserComponent],
   providers: [UserService],
   entryComponents: [NewUserComponent]
 })

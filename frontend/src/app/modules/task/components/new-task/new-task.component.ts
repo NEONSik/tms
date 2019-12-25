@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {TaskService} from '../../../../services/task.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Task} from '../../model/task';
@@ -9,6 +9,8 @@ import {ProjectService} from '../../../../services/project.service';
 import {of} from 'rxjs';
 import {UserService} from '../../../../services/user.service';
 import {Page} from '../../../../models/page';
+import {TransitEventsService} from '../../../../services/transit-events.service';
+import {ParseToken} from '../../../../models/parse-token';
 
 
 @Component({
@@ -22,17 +24,20 @@ export class NewTaskComponent implements OnInit {
   newTask: Task = new Task();
   usersOptions: User[];
   projectsOptions: Project[];
-  FilteredUsers;
-  FilteredProjects;
+  filteredUsers;
+  strings: string[];
+  token: string;
+  filteredProjects;
+  parsedToken: ParseToken = new ParseToken();
 
-  constructor(public dialogRef: MatDialogRef<NewTaskComponent>, private taskService: TaskService, private formBuilder: FormBuilder, public projectService: ProjectService, public userService: UserService) {
+  constructor(private taskSnackBar: MatSnackBar, private transitEventsService: TransitEventsService, public dialogRef: MatDialogRef<NewTaskComponent>, private taskService: TaskService, private formBuilder: FormBuilder, public projectService: ProjectService, public userService: UserService) {
   }
 
   ngOnInit() {
     this.projectService.getProjects().subscribe((data: Page<Project>) => {
       this.projectsOptions = data.content;
     });
-    this.userService.getUser().subscribe((data: Page<User>) => {
+    this.userService.getUsersForAssignee().subscribe((data: Page<User>) => {
       this.usersOptions = data.content;
     });
     this.newTaskForm = this.formBuilder.group({
@@ -43,15 +48,19 @@ export class NewTaskComponent implements OnInit {
       estimation: ['', [Validators.required]],
       assignee: ['', [Validators.required]]
     });
+    this.token = localStorage.getItem('token');
+    this.strings = this.token.split('.');
+    const payload = JSON.parse(atob(this.strings[1]));
+    this.parsedToken.id = payload.id;
     this.autocomplete();
   }
 
   autocomplete() {
     this.newTaskForm.controls.assignee.valueChanges.subscribe(user => {
-      this.FilteredUsers = this.filterUser(user);
+      this.filteredUsers = this.filterUser(user);
+    });
       this.newTaskForm.controls.project.valueChanges.subscribe(project => {
-        this.FilteredProjects = this.filterProject(project);
-      });
+        this.filteredProjects = this.filterProject(project);
     });
   }
 
@@ -80,9 +89,20 @@ export class NewTaskComponent implements OnInit {
     this.newTask.assignee = new User();
     this.newTask.assignee.id = this.usersOptions.find(user => user.name === this.newTaskForm.controls.assignee.value).id;
     this.newTask.reporter = new User();
-    this.newTask.reporter.id = 1;
+    this.newTask.reporter.id = this.parsedToken.id;
     this.taskService.createTask(this.newTask).subscribe(() => {
-      this.dialogRef.close();
+        this.transitEventsService.myMethod(true);
+        this.dialogRef.close();
+        this.openSnackBar('Task created successfully', 'Close');
+      },
+      error => {
+        this.openSnackBar('Error! Status: ' + error.status, 'Close');
+      });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.taskSnackBar.open(message, action, {
+      duration: 5000,
     });
   }
 }

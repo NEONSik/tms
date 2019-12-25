@@ -18,23 +18,23 @@
 
   <ng-container matColumnDef="assignee">
     <mat-header-cell *matHeaderCellDef> Assigne: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.assignee.email}} </mat-cell>
+    <mat-cell *matCellDef="let element"><a class="taskClick" [routerLink]="['/userpage', element.assignee.id]">{{element.assignee.email}}</a></mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="project">
     <mat-header-cell *matHeaderCellDef> From Project: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.project.projectCode}} </mat-cell>
+    <mat-cell *matCellDef="let element"><a class="taskClick" [routerLink]="['/projectpage', element.project.id]">{{element.project.projectCode}}</a></mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="reporter">
     <mat-header-cell *matHeaderCellDef> Reporter: </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.reporter.email}} </mat-cell>
+    <mat-cell *matCellDef="let element"><a class="taskClick" [routerLink]="['/userpage', element.reporter.id]">{{element.reporter.email}}</a></mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="delete">
+  <ng-container  matColumnDef="delete">
     <mat-header-cell *matHeaderCellDef> Delete: </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-flat-button color="primary" (click)="deleteTask(element.id)">delete</button>
+      <button mat-flat-button color="primary" [disabled]="roleFromToken=='Developer'|| roleFromToken=='Tester'"  (click)="deleteTask(element.id)">delete</button>
     </mat-cell>
   </ng-container>
 

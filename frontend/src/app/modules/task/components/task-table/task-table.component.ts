@@ -5,6 +5,7 @@ import {TaskService} from '../../../../services/task.service';
 import {Task} from '../../model/task';
 import {ProjectService} from '../../../../services/project.service';
 import {Page} from '../../../../models/page';
+import {TransitEventsService} from '../../../../services/transit-events.service';
 
 @Component({
   selector: 'app-task-table',
@@ -15,6 +16,9 @@ export class TaskTableComponent implements AfterViewInit {
   public tasks: Task[];
   public displayedColumns: string[] = ['priority', 'status', 'ticketCode', 'assignee', 'project', 'reporter', 'delete'];
   public dataSource: MatTableDataSource<Task>;
+  token: string;
+  roleFromToken: string;
+  strings: string[];
   public totalSize = 0;
   public pageSize = 10;
   public currentPage = 0;
@@ -22,7 +26,14 @@ export class TaskTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
 
-  constructor(private taskService: TaskService) {
+  constructor(private transitEventsService: TransitEventsService, private taskService: TaskService) {
+    this.transitEventsService.myMethod$.subscribe((data) => {
+      this.updateData();
+    });
+    this.token = localStorage.getItem('token');
+    this.strings = this.token.split('.');
+    const payload = JSON.parse(atob(this.strings[1]));
+    this.roleFromToken = payload.scopes;
   }
 
   ngAfterViewInit() {

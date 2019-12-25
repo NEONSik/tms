@@ -15,7 +15,10 @@
       </div>
       <div class="form-group">
         <mat-form-field>
-          <input matInput placeholder="Password" formControlName="password">
+          <input matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error *ngIf="newUserForm.hasError('whitespace')">required</mat-error>
         </mat-form-field>
       </div>

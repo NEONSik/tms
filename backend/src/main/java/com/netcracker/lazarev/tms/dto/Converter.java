@@ -4,6 +4,7 @@ import com.netcracker.lazarev.tms.entity.Comment;
 import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.entity.Task;
 import com.netcracker.lazarev.tms.entity.User;
+import com.netcracker.lazarev.tms.repository.TaskRepository;
 
 
 public class Converter {
@@ -42,6 +43,20 @@ public class Converter {
                 .assignee(taskDto.getAssignee() != null ? fromDto(taskDto.getAssignee()) : null)
                 .project(taskDto.getProject() != null ? fromDto(taskDto.getProject()) : null)
                 .reporter(taskDto.getReporter() != null ? fromDto(taskDto.getReporter()) : null)
+                .build();
+    }
+    public static Task forUpdate (Task task, Task bd, Long id) {
+        return Task.builder()
+                .createDate(bd.getCreateDate())
+                .description(task.getDescription())
+                .dueDate(task.getDueDate())
+                .reporter(bd.getReporter())
+                .assignee(task.getAssignee())
+                .priority(task.getPriority())
+                .project(task.getProject())
+                .status(task.getStatus())
+                .estimation(task.getEstimation())
+                .id(bd.getId())
                 .build();
     }
 

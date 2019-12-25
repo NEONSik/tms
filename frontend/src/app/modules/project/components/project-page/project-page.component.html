@@ -3,7 +3,8 @@
   <div>
     <mat-list>
       <div class="form-group">
-        <mat-list-item>Project Manager:  {{projectPage.projectManager.email}}
+
+        <mat-list-item>Project Manager:  {{projectManager.email}}
         </mat-list-item>
       </div>
       <mat-divider></mat-divider>
@@ -18,6 +19,5 @@
     </mat-list>
   </div>
   <button mat-raised-button color="primary" (click)="homePage()">Home</button>
-  <button mat-raised-button color="accent" (click)="edit()">Edit
-  </button>
+  <button *ngIf="roleFromToken=='Project Manager'" mat-raised-button color="accent" (click)="edit()">Edit</button>
 </div>

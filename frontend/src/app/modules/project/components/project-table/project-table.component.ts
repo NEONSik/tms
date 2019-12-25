@@ -5,6 +5,7 @@ import {TaskService} from '../../../../services/task.service';
 import {ProjectService} from '../../../../services/project.service';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 import {Page} from '../../../../models/page';
+import {TransitEventsService} from '../../../../services/transit-events.service';
 
 
 
@@ -23,11 +24,14 @@ export class ProjectTableComponent implements AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private transitEventsService: TransitEventsService) {
+    this.transitEventsService.myMethod$.subscribe((data) => {
+      this.updateData();
+    });
   }
 
   ngAfterViewInit(): void {
-    this.sort.active = 'projectCode';
+    this.sort.active = 'id';
     this.sort.direction = 'asc';
     this.getData();
   }
@@ -51,7 +55,7 @@ export class ProjectTableComponent implements AfterViewInit {
 
   private updateData() {
     if (this.sort.active === '' || this.sort.direction === '') {
-      this.sort.active = 'projectCode';
+      this.sort.active = 'id';
       this.sort.direction = 'asc';
     }
     this.projectService.getProjectsTable(this.currentPage, this.pageSize, `${this.sort.active},${this.sort.direction}`)
@@ -70,8 +74,4 @@ export class ProjectTableComponent implements AfterViewInit {
   }
 }
 
-// editProject(editProject: Project) {
-//   const dialogRef = this.dialog.open(EditprojectComponent);
-//   dialogRef.componentInstance.editProject = editProject;
-// }
 

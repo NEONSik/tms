@@ -35,12 +35,15 @@ import {LoginModule} from './modules/login/login.module';
 import {EditProjectComponent} from './modules/project/components/edit-project/edit-project.component';
 import {EditTaskComponent} from './modules/task/components/edit-task/edit-task.component';
 import {EditUserComponent} from './modules/user/components/edit-user/edit-user.component';
+import {TaskTableComponent} from './modules/task/components/task-table/task-table.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: LoginPageComponent},
   {path: 'user', component: UserPageComponent},
   {path: 'projects', component: ProjectTableComponent},
+  {path: 'tasks', component: TaskTableComponent},
+  {path: 'users', component: UserTableComponent},
   {path: 'taskpage/:id', component: TaskPageComponent},
   {path: 'projectpage/:id', component: ProjectPageComponent},
   {path: 'home', component: HomePageComponent},

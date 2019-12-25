@@ -3,11 +3,11 @@
 
   <ng-container matColumnDef="email">
     <mat-header-cell *matHeaderCellDef  mat-sort-header> Username:</mat-header-cell>
-    <mat-cell *matCellDef="let element"> <a class="userClick" [routerLink]="['/userpage', element.id]">{{ element.email}}</a> </mat-cell>
+    <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Name:</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    <mat-cell *matCellDef="let element"><a class="userClick" [routerLink]="['/userpage', element.id]">{{ element.name}}</a> </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="role">
@@ -18,7 +18,7 @@
   <ng-container matColumnDef="delete">
     <mat-header-cell *matHeaderCellDef>Delete: </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-flat-button color="primary" (click)="deleteUser(element.id)">delete</button>
+      <button mat-flat-button color="primary"[disabled]="users"(click)="deleteUser(element.id)">delete</button>
     </mat-cell>
   </ng-container>
 

@@ -3,6 +3,7 @@ import {NewTaskComponent} from '../../../task/components/new-task/new-task.compo
 import {MatDialog} from '@angular/material';
 import {NewUserComponent} from '../../../user/components/new-user/new-user.component';
 import {NewProjectComponent} from '../../../project/components/new-project/new-project.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,23 +11,36 @@ import {NewProjectComponent} from '../../../project/components/new-project/new-p
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  token: string;
+  strings: string[];
+  roleInToken: string;
+  nameUserInSystem: string;
 
-  constructor(public dialog: MatDialog) {
+  constructor(private router: Router, public dialog: MatDialog) {
   }
 
   newTask() {
-    const dialogRef = this.dialog.open(NewTaskComponent);
+    this.dialog.open(NewTaskComponent);
   }
 
   newUser() {
-    const dialogRef = this.dialog.open(NewUserComponent);
+    this.dialog.open(NewUserComponent);
   }
 
   newProject() {
-    const diologRef = this.dialog.open(NewProjectComponent);
+    this.dialog.open(NewProjectComponent);
+  }
+
+  public logOutUser() {
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
   }
 
   ngOnInit() {
+    this.token = localStorage.getItem('token');
+    this.strings = this.token.split('.');
+    const payload = JSON.parse(atob(this.strings[1]));
+    this.roleInToken = payload.scopes;
+    this.nameUserInSystem = payload.sub;
   }
-
 }

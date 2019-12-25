@@ -110,38 +110,38 @@ html {
 
 /*!*user page*!*/
 
-.user_information {
-  width: 25%;
-  /*background-color: black;*/
-  float: left;
-  margin: 2rem auto;
+/*.user_information {*/
+/*  width: 25%;*/
+/*  !*background-color: black;*!*/
+/*  float: left;*/
+/*  margin: 2rem auto;*/
 
-}
+/*}*/
 
-.dropdown-item a {
-  color: white;
-}
-.user_information > * {
-  padding: 0.1rem;
-  color: darkslateblue;
-}
+/*.dropdown-item a {*/
+/*  color: white;*/
+/*}*/
+/*.user_information > * {*/
+/*  padding: 0.1rem;*/
+/*  color: darkslateblue;*/
+/*}*/
 
-.user_information p, img, .wrapper p {
-  /*margin-bottom: 1rem;*/
-  text-align: left;
-}
+/*.user_information p, img, .wrapper p {*/
+/*  !*margin-bottom: 1rem;*!*/
+/*  text-align: left;*/
+/*}*/
 
-.user_information h2, .wrapper h3 {
-  float: contour;
-  margin-right: 1rem;
-}
-.user_information a {
-  color: darkviolet;
-}
+/*.user_information h2, .wrapper h3 {*/
+/*  float: contour;*/
+/*  margin-right: 1rem;*/
+/*}*/
+/*.user_information a {*/
+/*  color: darkviolet;*/
+/*}*/
 
-.avatar {
-  width: 7rem;
-}
+/*.avatar {*/
+/*  width: 7rem;*/
+/*}*/
 
 /*!* project info page *!*/
 
@@ -169,3 +169,6 @@ html {
 /*  float:right;*/
 /*  text-align: left;*/
 /*}*/
+.font{
+ color:blueviolet;
+}

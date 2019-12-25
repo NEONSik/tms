@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../../services/auth.service';
 import {Router} from '@angular/router';
 import {split} from 'ts-node';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,7 @@ import {split} from 'ts-node';
 export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router, private  formbuilder: FormBuilder) {
+  constructor(private _snackBar: MatSnackBar, private authService: AuthService, private router: Router, private  formbuilder: FormBuilder) {
   }
 
   hide = true;
@@ -26,6 +27,8 @@ export class LoginPageComponent implements OnInit {
       .subscribe((data: Token) => {
         window.localStorage.setItem('token', data.token);
         this.router.navigate(['home']);
+      }, error => {
+        this.openSnackBar('Error! Status:' + error.status, 'Close');
       });
   }
 
@@ -33,15 +36,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW5pc2thQG1haWwucnUiLCJzY29wZXMiOiJST0xFX1BST0pFQ1RfTUFOQUdFUiIsImlkIjoiMzYiLCJpYXQiOjE1NzQ1NTY0MzIsImV4cCI6MTU3NDU3NDQzMn0.x0Fkqyxje2IuRPIkf57ULWtfwP_jDaf-PrUrhyPK1TY';
-    let strings = token.split('.');
-    const payload = JSON.parse(atob(strings[1]));
-    const email = payload.sub;
-    const role = payload.scopes;
-    const id = payload.id;
     this.loginForm = this.formbuilder.group({
       email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')]],
       password: ['', [Validators.required]]
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 5000,
     });
   }
 }

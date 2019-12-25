@@ -18,6 +18,18 @@
   </div>
   <div class="form-group">
     <mat-form-field>
+      <mat-select matNativeControl required placeholder="Status" formControlName="status">
+        <mat-option *ngIf="roleFromToken=='Tester'||'Project Manager'" value="Reopen">Reopen</mat-option>
+        <mat-option *ngIf="roleFromToken=='Developer'||'Project Manager'" value="In Progress">In Progress</mat-option>
+        <mat-option *ngIf="roleFromToken=='Developer'||'Project Manager'" value="Resolved">Resolved</mat-option>
+        <mat-option *ngIf="roleFromToken=='Developer'||'Project Manager'" value="Ready for Test">Ready for Test</mat-option>
+        <mat-option *ngIf="roleFromToken=='Tester'||'Project Manager'" value="Closed">Closed</mat-option>
+      </mat-select>
+      <mat-error *ngIf="editTaskForm.controls.status.invalid">required</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field>
       <mat-select matNativeControl required placeholder="Priority" formControlName="priority">
         <mat-option value="BLOCKER">Blocker</mat-option>
         <mat-option value="CRITICAL">Critical</mat-option>
@@ -54,6 +66,6 @@
     </mat-autocomplete>
   </div>
   <button mat-raised-button color="primary" (click)="updateTask()">Update</button>
-  <button mat-raised-button color="warn" (click)="navigateToHome()">Home</button>
+  <button mat-raised-button color="warn" (click)="close()">Close</button>
 </form>
 

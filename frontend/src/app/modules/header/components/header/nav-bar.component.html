@@ -6,15 +6,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <button (click)="newTask()" mat-flat-button color="primary">New Task</button>
-        <button (click)="newUser()" mat-flat-button color="primary">New User</button>
-        <button (click)="newProject()" mat-flat-button color="primary">New Project</button>
+      <ul class="navbar-nav mr-auto" [ngSwitch]="roleInToken">
+        <div *ngSwitchCase="'Project Manager'" ><button class="headerButton" (click)="newTask()" mat-flat-button color="primary">New Task</button></div>
+        <div *ngSwitchCase="'Admin'" > <button class="headerButton" (click)="newUser()" mat-flat-button color="primary">New User</button></div>
+        <div *ngSwitchCase="'Project Manager'"> <button  class="headerButton" (click)="newProject()" mat-flat-button color="primary">New Project</button> </div>
+        <h5 *ngSwitchDefault></h5>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      <span class="userName">{{nameUserInSystem}}</span>
+      <button class="logOutButton" mat-flat-button color="warn" (click)="logOutUser()" >Log Out</button>
     </div>
   </nav>
 </div>

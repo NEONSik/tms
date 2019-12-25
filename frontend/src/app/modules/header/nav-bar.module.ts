@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common';
 import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatTabsModule, MatToolbarModule} from '@angular/material';
 import {AppModule} from '../../app.module';
 import {UserModule} from '../user/user.module';
@@ -27,7 +27,7 @@ import {RouterModule} from '@angular/router';
   ],
   exports: [
     NavBarComponent
-  ]
+  ],
 })
 export class NavBarModule {
 }

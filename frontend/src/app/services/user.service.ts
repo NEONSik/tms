@@ -28,7 +28,7 @@ export class UserService {
     return this.http.get<Page<User>>(`api/v1/users?role=${role}`);
   }
 
-  getUser(): Observable<Page<User>> {
+  getUsersForAssignee(): Observable<Page<User>> {
     return this.http.get<Page<User>>(`api/v1/users`);
   }
 

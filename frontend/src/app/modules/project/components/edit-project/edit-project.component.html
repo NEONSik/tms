@@ -1,27 +1,30 @@
 <form [formGroup]="editProjectForm">
-<div class="form-group">
-  <mat-form-field>
-  <input matInput type="text" formControlName="projectCode" placeholder="Project Code" />
-    <mat-error *ngIf="editProjectForm.controls.projectCode.invalid">required</mat-error>
-    </mat-form-field>
-</div>
   <div class="form-group">
-  <mat-form-field>
-    <input matInput type="text" formControlName="summary" placeholder="Summary" />
-    <mat-error *ngIf="editProjectForm.controls.summary.invalid">required</mat-error>
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" formControlName="projectCode" placeholder="Project Code"/>
+      <mat-error *ngIf="editProjectForm.controls.projectCode.invalid">required</mat-error>
+    </mat-form-field>
   </div>
   <div class="form-group">
-  <mat-form-field>
-    <input matInput type="text" formControlName="projectManager" placeholder="Project Manager" [matAutocomplete]="users"/>
-    <mat-error *ngIf="editProjectForm.controls.projectManager.invalid">required</mat-error>
-    <mat-autocomplete autoActiveFirstOption #users="matAutocomplete">
-      <mat-option *ngFor="let option of managersFilteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</div>
-  <button mat-raised-button color="primary" (click)="updateProject()">Update</button>
+    <mat-form-field>
+      <input matInput type="text" formControlName="summary" placeholder="Summary"/>
+      <mat-error *ngIf="editProjectForm.controls.summary.invalid">required</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput type="text" formControlName="projectManager" placeholder="Project Manager"
+             [matAutocomplete]="users"/>
+      <mat-error *ngIf="editProjectForm.controls.projectManager.invalid">required</mat-error>
+      <mat-autocomplete autoActiveFirstOption #users="matAutocomplete">
+        <mat-option *ngFor="let option of managersFilteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" [disabled]="editProjectForm.invalid" (click)="updateProject()">
+    Update
+  </button>
   <button mat-raised-button color="primary" (click)="navigateToHome()">Home</button>
 </form>

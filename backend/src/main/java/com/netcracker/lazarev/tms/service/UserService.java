@@ -2,6 +2,7 @@ package com.netcracker.lazarev.tms.service;
 
 import com.netcracker.lazarev.tms.entity.User;
 import com.netcracker.lazarev.tms.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 

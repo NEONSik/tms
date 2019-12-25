@@ -3,7 +3,6 @@ package com.netcracker.lazarev.tms.service;
 
 import com.netcracker.lazarev.tms.entity.Project;
 import com.netcracker.lazarev.tms.repository.ProjectRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 @Service
@@ -11,7 +10,6 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
 
-    @Autowired
     public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }

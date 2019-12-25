@@ -17,6 +17,7 @@ public class CommentService {
     public CommentService(RestTemplateBuilder builder) {
         this.restTemplate = builder.build();
     }
+
     public Comment get(Long id) {
         return restTemplate.getForObject(backendURL + "comments/" + id, Comment.class);
     }

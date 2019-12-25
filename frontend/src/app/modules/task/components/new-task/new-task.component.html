@@ -7,7 +7,7 @@
           <mat-error *ngIf="newTaskForm.controls.project.invalid">required</mat-error>
         </mat-form-field>
         <mat-autocomplete autoActiveFirstOption #projects="matAutocomplete">
-          <mat-option *ngFor="let option of FilteredProjects|async" [value]="option">
+          <mat-option *ngFor="let option of filteredProjects|async" [value]="option">
             {{option}}
           </mat-option>
         </mat-autocomplete>
@@ -40,7 +40,7 @@
       </div>
       <div class="form-group">
         <mat-form-field>
-          <input matInput placeholder="Estimation" formControlName="estimation">
+          <input matInput placeholder="Estimation (hours)" formControlName="estimation">
           <mat-error *ngIf="newTaskForm.controls.estimation.invalid">required</mat-error>
         </mat-form-field>
       </div>
@@ -50,7 +50,7 @@
           <mat-error *ngIf="newTaskForm.controls.assignee.invalid">required</mat-error>
         </mat-form-field>
         <mat-autocomplete autoActiveFirstOption #users="matAutocomplete">
-          <mat-option *ngFor="let option of FilteredUsers|async" [value]="option">
+          <mat-option *ngFor="let option of filteredUsers|async" [value]="option">
             {{option}}
           </mat-option>
         </mat-autocomplete>

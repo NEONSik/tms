@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {ProjectService} from '../../services/project.service';
 import {NewProjectComponent} from './components/new-project/new-project.component';
 import {
-  MatButtonModule, MatDividerModule, MatExpansionModule,
+  MatButtonModule, MatDialogModule, MatDividerModule, MatExpansionModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule, MatListModule, MatPaginatorModule,
   MatRippleModule,
@@ -22,6 +22,7 @@ import {RouterModule} from '@angular/router';
 
 import {MatAutocompleteModule} from '@angular/material';
 import { EditProjectComponent } from './components/edit-project/edit-project.component';
+import {TransitEventsService} from '../../services/transit-events.service';
 
 
 
@@ -45,9 +46,10 @@ import { EditProjectComponent } from './components/edit-project/edit-project.com
     MatTabsModule,
     MatDividerModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
-  providers: [ProjectService],
+  providers: [ProjectService, TransitEventsService],
   exports: [NewProjectComponent, ProjectTableComponent],
   entryComponents: [NewProjectComponent]
 })

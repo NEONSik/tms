@@ -34,6 +34,11 @@ public class TaskController {
         Task task = taskService.get(id);
         return Converter.toDto(task);
     }
+//    @GetMapping
+//    private List<TaskDto> getByAssignee(@RequestParam(name = "assignee_id") Long assigneeId) {
+//        List<Task> tasks= taskService.getAssigne(assigneeId);
+//return tasks.stream().map(Converter::toDto).collect(Collectors.toList());
+//    }
     
     @PostMapping
     private TaskDto create(@RequestBody TaskDto taskDto) {

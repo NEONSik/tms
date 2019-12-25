@@ -9,6 +9,7 @@ import {ProjectModule} from '../project/project.module';
 import {UserModule} from '../user/user.module';
 import {TaskModule} from '../task/task.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatSortModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterModule
   ],
   exports: [
     HomePageComponent

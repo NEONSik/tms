@@ -4,3 +4,31 @@
 .commentForm{
   color: #FFFFFF;
 }
+.content{
+  color:#00BFA5
+}
+.name{
+  color:#7E57C2
+}
+.comments {
+  color: whitesmoke;
+}
+.commentDiplay{
+  display: block;
+}
+.commentButtons{
+  margin-left: 10px;
+}
+.deleteButton{
+  position: absolute;
+  right:20px;
+  margin-top: 10px;
+}
+.taskDetails{
+  display: inline-flex;
+}
+.editButton{
+  position: absolute ;
+  right:20px ;
+  margin-left: 500px ;
+}

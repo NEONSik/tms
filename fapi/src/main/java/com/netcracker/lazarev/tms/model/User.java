@@ -2,17 +2,17 @@ package com.netcracker.lazarev.tms.model;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class User {
     private Long id;
-    @NotEmpty
+    @NotBlank
     private String name;
-    @NotEmpty
+    @NotBlank
     private String password;
-    @NotEmpty
+    @NotBlank
     private String role;
-    @NotEmpty
+    @NotBlank
     private String email;
 }
