@@ -30,6 +30,10 @@ export class TaskService {
     return this.http.delete<void>(`api/v1/tasks/${id}`);
   }
 
+  getTasksByAssignUser(assigneeId: number): Observable<Page<Task>> {
+    return this.http.get<Page<Task>>(`api/v1/tasks?assigneeId=${assigneeId}`);
+  }
+
   getTasks(page: number, size: number, sort: string): Observable<Page<Task>> {
     return this.http.get<Page<Task>>(`api/v1/tasks?page=${page}&size=${size}&sort=${sort}`);
   }

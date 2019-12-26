@@ -104,7 +104,7 @@ ALTER TABLE comments
     ADD CONSTRAINT fk_task_id FOREIGN KEY (task_id)
         REFERENCES tasks (id) MATCH SIMPLE
         ON UPDATE NO ACTION
-        ON DELETE SET NULL;
+        ON DELETE CASCADE;
 
 
 ALTER TABLE tasks

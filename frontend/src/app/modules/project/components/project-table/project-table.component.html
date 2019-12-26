@@ -17,7 +17,11 @@
 
   <ng-container matColumnDef="projectManager">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Project manager: </mat-header-cell>
-    <mat-cell *matCellDef="let element"><a class="projectClick" [routerLink]="['/userpage', element.projectManager.id]">{{element.projectManager.email}}</a></mat-cell>
+    <mat-cell *matCellDef="let element">
+      <div *ngIf="element.projectManager!=null">
+      <a class="projectClick" [routerLink]="['/userpage', element.projectManager.id]">{{element.projectManager.email|checkValue}}</a>
+      </div>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="delete">

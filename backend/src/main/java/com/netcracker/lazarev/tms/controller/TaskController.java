@@ -23,10 +23,11 @@ public class TaskController {
 
     @GetMapping
     private Page<TaskDto> getAll(
-            @RequestParam(value="page") int page,
-            @RequestParam(value="size") int size,
-            @RequestParam(value="sort") String sort) {
-    return taskService.findAll(page,size,sort).map(Converter::toDto);
+            @RequestParam(value="page", required = false) Integer page,
+            @RequestParam(value="size", required = false) Integer size,
+            @RequestParam(value="sort", required = false) String sort,
+            @RequestParam(value="assigneeId", required = false) Long assigneeId) {
+    return taskService.findAll(page,size,sort,assigneeId).map(Converter::toDto);
     }
 
     @GetMapping("/{id}")
@@ -34,11 +35,7 @@ public class TaskController {
         Task task = taskService.get(id);
         return Converter.toDto(task);
     }
-//    @GetMapping
-//    private List<TaskDto> getByAssignee(@RequestParam(name = "assignee_id") Long assigneeId) {
-//        List<Task> tasks= taskService.getAssigne(assigneeId);
-//return tasks.stream().map(Converter::toDto).collect(Collectors.toList());
-//    }
+
     
     @PostMapping
     private TaskDto create(@RequestBody TaskDto taskDto) {

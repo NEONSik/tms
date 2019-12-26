@@ -15,10 +15,14 @@
       <mat-list-item>Status:  {{taskPage.status}}</mat-list-item>
       <mat-divider></mat-divider>
       <h4 class="font">People:</h4>
-      <mat-list-item> Reporter:  {{reporterOfProject.name}}</mat-list-item>
+      <div *ngIf="taskPage.reporter!=null">
+      <mat-list-item> Reporter:  {{taskPage.reporter.name|checkValue}}</mat-list-item>
+      </div>
       <mat-divider></mat-divider>
-      <mat-list-item> Assignee:  {{assigneeOfProject.name}}</mat-list-item>
-      <mat-divider></mat-divider>
+      <div *ngIf="taskPage.assignee!=null">
+      <mat-list-item> Assignee:  {{taskPage.assignee.name|checkValue}}</mat-list-item>
+      </div>
+        <mat-divider></mat-divider>
       <h4 class="font">Dates:</h4>
       <mat-list-item>Created:  {{taskPage.createDate| date}}</mat-list-item>
       <mat-divider></mat-divider>

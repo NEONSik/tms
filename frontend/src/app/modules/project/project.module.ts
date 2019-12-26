@@ -21,9 +21,9 @@ import {TaskModule} from '../task/task.module';
 import {RouterModule} from '@angular/router';
 
 import {MatAutocompleteModule} from '@angular/material';
-import { EditProjectComponent } from './components/edit-project/edit-project.component';
+import {EditProjectComponent} from './components/edit-project/edit-project.component';
 import {TransitEventsService} from '../../services/transit-events.service';
-
+import {CheckValuePipe} from '../task/pipes/check-value.pipe';
 
 
 @NgModule({

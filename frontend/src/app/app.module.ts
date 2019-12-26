@@ -36,6 +36,7 @@ import {EditProjectComponent} from './modules/project/components/edit-project/ed
 import {EditTaskComponent} from './modules/task/components/edit-task/edit-task.component';
 import {EditUserComponent} from './modules/user/components/edit-user/edit-user.component';
 import {TaskTableComponent} from './modules/task/components/task-table/task-table.component';
+import { CheckValuePipe } from './modules/task/pipes/check-value.pipe';
 
 
 const appRoutes: Routes = [
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     ProjectModule,
     LoginModule
   ],
-  exports: [],
+  exports: [
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

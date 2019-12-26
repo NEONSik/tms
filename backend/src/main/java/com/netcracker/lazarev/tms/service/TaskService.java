@@ -3,10 +3,7 @@ package com.netcracker.lazarev.tms.service;
 import com.netcracker.lazarev.tms.dto.Converter;
 import com.netcracker.lazarev.tms.entity.Task;
 import com.netcracker.lazarev.tms.repository.TaskRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,11 +18,6 @@ public class TaskService {
 
     public Task get(Long id) {
         return taskRepository.findById(id).get();
-    }
-
-    //public List<Task> getAssigne(Long assigneeId){return taskRepository.findByAssignee(assigneeId);}
-    public List<Task> getAll() {
-        return taskRepository.findAll();
     }
 
     public Task create(Task task) {
@@ -44,13 +36,22 @@ public class TaskService {
         taskRepository.deleteById(id);
     }
 
-    public Page<Task> findAll(int page, int size, String sort) {
-        String params[] = sort.split(",");
-        Pageable pageRequest;
-        if (params[1].equals("asc"))
-            pageRequest = PageRequest.of(page, size);
-        else
-            pageRequest = PageRequest.of(page, size, Sort.by(params[0]).descending());
-        return taskRepository.findAll(pageRequest);
+    public Page<Task> findAll(Integer page, Integer size, String sort, Long assigneeId) {
+        if (page == null && size == null && sort == null) {
+            if (assigneeId == null) {
+                return new PageImpl<>(taskRepository.findAll(), PageRequest.of(1, 1), 1);
+            } else {
+                return new PageImpl<>(taskRepository.findByAssignee(assigneeId), PageRequest.of(1, 1), 1);
+            }
+        } else {
+            String[] params = sort.split(",");
+            Pageable pageRequest;
+            if (params[1].equals("asc")) {
+                pageRequest = PageRequest.of(page, size);
+            } else {
+                pageRequest = PageRequest.of(page, size, Sort.by(params[0]).descending());
+            }
+            return taskRepository.findAll(pageRequest);
+        }
     }
 }

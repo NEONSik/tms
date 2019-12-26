@@ -39,7 +39,7 @@ public class UserService {
                 return new PageImpl<>(userRepository.findByRole(role), PageRequest.of(1,1), 1);
             }
         } else {
-            String[] params = sort.split(",");
+            String []params = sort.split(",");
             Pageable pageRequest;
             if (params[1].equals("asc")) {
                 pageRequest = PageRequest.of(page, size);

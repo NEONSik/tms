@@ -21,7 +21,7 @@ export class UserTableComponent implements AfterViewInit {
   token: string;
   roleFromToken: string;
   strings: string[];
-  roleOfUser: User = new User();
+  checkEmailOfUser: User = new User();
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
@@ -33,6 +33,7 @@ export class UserTableComponent implements AfterViewInit {
     this.strings = this.token.split('.');
     const payload = JSON.parse(atob(this.strings[1]));
     this.roleFromToken = payload.scopes;
+    this.checkEmailOfUser.email = payload.sub;
   }
 
   ngAfterViewInit(): void {
@@ -40,11 +41,7 @@ export class UserTableComponent implements AfterViewInit {
     this.sort.direction = 'asc';
     this.getData();
   }
-  applyFilter(filterValue: string) {
-    // filterValue = filterValue.trim(); // Remove whitespace
-    // filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
+
   public handlePage(e: any) {
     this.currentPage = e.pageIndex;
     this.pageSize = e.pageSize;

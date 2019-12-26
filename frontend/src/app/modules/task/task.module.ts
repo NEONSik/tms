@@ -14,7 +14,7 @@ import {
   MatTableDataSource,
   MatTableModule
 } from '@angular/material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule, ValidatorFn} from '@angular/forms';
 import {TaskTableComponent} from './components/task-table/task-table.component';
 import {MatPaginatorModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,10 +22,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {NavBarModule} from '../header/nav-bar.module';
 import {RouterModule} from '@angular/router';
 import {EditTaskComponent} from './components/edit-task/edit-task.component';
+import {CheckValuePipe} from './pipes/check-value.pipe';
 
 
 @NgModule({
-  declarations: [TaskPageComponent, NewTaskComponent, TaskTableComponent, EditTaskComponent],
+  declarations: [TaskPageComponent, NewTaskComponent, TaskTableComponent, EditTaskComponent, CheckValuePipe],
   imports: [
     CommonModule,
     MatInputModule,
@@ -48,7 +49,7 @@ import {EditTaskComponent} from './components/edit-task/edit-task.component';
     MatSnackBarModule,
     MatDialogModule
   ],
-  exports: [NewTaskComponent, TaskTableComponent, TaskPageComponent, EditTaskComponent],
+  exports: [NewTaskComponent, TaskTableComponent, TaskPageComponent, EditTaskComponent, CheckValuePipe],
   providers: [TaskService],
   entryComponents: [NewTaskComponent, EditTaskComponent]
 })

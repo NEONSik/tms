@@ -43,8 +43,6 @@ export class TaskPageComponent implements OnInit {
     this.taskId = this.activateRoute.snapshot.params['id'];
     this.taskService.getTask(this.taskId).subscribe((data: Task) => {
       this.taskPage = data;
-      this.reporterOfProject.name = data.reporter.name;
-      this.assigneeOfProject.name = data.assignee.name;
     });
     this.transitEventsService.myMethod$.subscribe((dataEventsOfComments) => {
       this.getAllComments();
@@ -52,8 +50,6 @@ export class TaskPageComponent implements OnInit {
     this.transitEventsService.myMethod$.subscribe((event) => {
       this.taskService.getTask(this.taskId).subscribe((dataChanger: Task) => {
         this.taskPage = dataChanger;
-        this.reporterOfProject.name = dataChanger.reporter.name;
-        this.assigneeOfProject.name = dataChanger.assignee.name;
       });
     });
     this.commentForm = this.formBuilder.group({

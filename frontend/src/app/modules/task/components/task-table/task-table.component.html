@@ -1,40 +1,55 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8"(matSortChange)="updateData()" matSort>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" (matSortChange)="updateData()" matSort>
 
   <ng-container matColumnDef="priority">
-    <mat-header-cell *matHeaderCellDef> Priority: </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Priority:</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.priority}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="status">
-    <mat-header-cell *matHeaderCellDef> Status: </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Status:</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="ticketCode">
-    <mat-header-cell *matHeaderCellDef> Ticket Code: </mat-header-cell>
-    <mat-cell *matCellDef="let element"><a class="taskClick" [routerLink]="['/taskpage', element.id]">{{ element.ticketCode}}</a> </mat-cell>
+    <mat-header-cell *matHeaderCellDef> Ticket Code:</mat-header-cell>
+    <mat-cell *matCellDef="let element"><a class="taskClick"
+                                           [routerLink]="['/taskpage', element.id]">{{ element.ticketCode}}</a>
+    </mat-cell>
   </ng-container>
 
 
   <ng-container matColumnDef="assignee">
-    <mat-header-cell *matHeaderCellDef> Assigne: </mat-header-cell>
-    <mat-cell *matCellDef="let element"><a class="taskClick" [routerLink]="['/userpage', element.assignee.id]">{{element.assignee.email}}</a></mat-cell>
+    <mat-header-cell *matHeaderCellDef> Assigne:</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <div *ngIf="element.assignee!=null">
+        <a class="taskClick" [routerLink]="['/userpage', element.assignee.id]">{{element.assignee.email|checkValue}}</a>
+      </div>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="project">
-    <mat-header-cell *matHeaderCellDef> From Project: </mat-header-cell>
-    <mat-cell *matCellDef="let element"><a class="taskClick" [routerLink]="['/projectpage', element.project.id]">{{element.project.projectCode}}</a></mat-cell>
+    <mat-header-cell *matHeaderCellDef> From Project:</mat-header-cell>
+    <mat-cell *matCellDef="let element"><a class="taskClick"
+                                           [routerLink]="['/projectpage', element.project.id]">{{element.project.projectCode}}</a>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="reporter">
-    <mat-header-cell *matHeaderCellDef> Reporter: </mat-header-cell>
-    <mat-cell *matCellDef="let element"><a class="taskClick" [routerLink]="['/userpage', element.reporter.id]">{{element.reporter.email}}</a></mat-cell>
+    <mat-header-cell *matHeaderCellDef> Reporter:</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <div *ngIf="element.reporter!=null">
+      <a class="taskClick" [routerLink]="['/userpage', element.reporter.id]">{{element.reporter.email|checkValue}}</a>
+      </div>
+    </mat-cell>
   </ng-container>
 
-  <ng-container  matColumnDef="delete">
-    <mat-header-cell *matHeaderCellDef> Delete: </mat-header-cell>
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef> Delete:</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-flat-button color="primary" [disabled]="roleFromToken=='Developer'|| roleFromToken=='Tester'"  (click)="deleteTask(element.id)">delete</button>
+      <button mat-flat-button color="primary"
+              [disabled]="roleFromToken.scopes=='Developer'|| roleFromToken.scopes=='Tester'"
+              (click)="deleteTask(element.id)">delete
+      </button>
     </mat-cell>
   </ng-container>
 

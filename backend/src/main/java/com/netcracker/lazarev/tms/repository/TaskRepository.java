@@ -11,9 +11,6 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
-//    @Query("select  tasks.ticket_code as taskscode,users.id as usersId, tasks.id as taskId from users\n" +
-//            "join tasks\n" +
-//            "on users.id=tasks.assignee_id\n" +
-//            "where name=:name", nativeQuery = true)
-//    List<Task> findByAssignee(@Param("name") String name);
+    @Query(value="select  * from tasks join users on users.id=tasks.assignee_id where tasks.assignee_id=?",nativeQuery = true)
+    List<Task> findByAssignee(Long assigneeId);
 }

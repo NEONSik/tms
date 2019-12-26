@@ -18,7 +18,7 @@
   <ng-container matColumnDef="delete">
     <mat-header-cell *matHeaderCellDef>Delete: </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-flat-button color="primary"[disabled]="users"(click)="deleteUser(element.id)">delete</button>
+      <button mat-flat-button color="primary"[disabled]="element.email==checkEmailOfUser.email"(click)="deleteUser(element.id)">delete</button>
     </mat-cell>
   </ng-container>
 

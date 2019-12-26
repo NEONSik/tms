@@ -17,13 +17,14 @@ public class TaskController {
     public TaskController(TaskService TaskService) {
         this.taskService = TaskService;
     }
-
+//    @PreAuthorize("hasRole('Project Manager')")
     @GetMapping
     public Page<Task> getAll(
-            @RequestParam(value="page") Integer page,
-            @RequestParam(value="size") Integer size,
-            @RequestParam(value="sort") String sort) {
-        return taskService.getAll(page,size,sort);
+            @RequestParam(value="page",required = false) Integer page,
+            @RequestParam(value="size" ,required = false) Integer size,
+            @RequestParam(value="sort",required = false) String sort,
+            @RequestParam(value = "assigneeId",required = false) Long assigneeId) {
+        return taskService.getAll(page,size,sort,assigneeId);
     }
 
     @GetMapping("/{id}")

@@ -59,8 +59,8 @@ export class NewTaskComponent implements OnInit {
     this.newTaskForm.controls.assignee.valueChanges.subscribe(user => {
       this.filteredUsers = this.filterUser(user);
     });
-      this.newTaskForm.controls.project.valueChanges.subscribe(project => {
-        this.filteredProjects = this.filterProject(project);
+    this.newTaskForm.controls.project.valueChanges.subscribe(project => {
+      this.filteredProjects = this.filterProject(project);
     });
   }
 
