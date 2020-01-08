@@ -17,7 +17,6 @@ public class TaskController {
     public TaskController(TaskService TaskService) {
         this.taskService = TaskService;
     }
-//    @PreAuthorize("hasRole('Project Manager')")
     @GetMapping
     public Page<Task> getAll(
             @RequestParam(value="page",required = false) Integer page,

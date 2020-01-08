@@ -8,6 +8,7 @@ import {UserService} from '../../../../services/user.service';
 import {of} from 'rxjs';
 import {Page} from '../../../../models/page';
 import {TransitEventsService} from '../../../../services/transit-events.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-new-project',
@@ -20,7 +21,7 @@ export class NewProjectComponent implements OnInit {
   managersOptions: User [];
   managersFilteredOptions;
 
-  constructor(private projectservice: ProjectService, public dialogRef: MatDialogRef<NewProjectComponent>,
+  constructor(private  projectSnackBar: MatSnackBar, private projectservice: ProjectService, public dialogRef: MatDialogRef<NewProjectComponent>,
               private userService: UserService, private  formbuilder: FormBuilder, private transitEventsService: TransitEventsService) {
   }
 
@@ -60,6 +61,15 @@ export class NewProjectComponent implements OnInit {
     this.projectservice.createProject(this.newProject).subscribe(() => {
       this.transitEventsService.myMethod(true);
       this.dialogRef.close();
+      this.openSnackBar('Project created successfully', 'Close');
+    }, error => {
+      this.openSnackBar('Error!', 'Close');
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.projectSnackBar.open(message, action, {
+      duration: 5000,
     });
   }
 }

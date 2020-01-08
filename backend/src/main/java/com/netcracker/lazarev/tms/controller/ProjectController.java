@@ -14,7 +14,6 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-    @Autowired
     public ProjectController(ProjectService ProjectService) {
         this.projectService = ProjectService;
     }

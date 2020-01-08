@@ -8,7 +8,7 @@ import {
   MatInputModule, MatListModule, MatPaginatorModule,
   MatRippleModule,
   MatSelectModule, MatSidenavModule,
-  MatSliderModule, MatSortModule,
+  MatSliderModule, MatSnackBarModule, MatSortModule,
   MatTableDataSource, MatTableModule, MatTabsModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -47,7 +47,8 @@ import {CheckValuePipe} from '../task/pipes/check-value.pipe';
     MatDividerModule,
     MatListModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [ProjectService, TransitEventsService],
   exports: [NewProjectComponent, ProjectTableComponent],
